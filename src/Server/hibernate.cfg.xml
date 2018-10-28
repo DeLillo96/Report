@@ -16,6 +16,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
         <!-- MAPPINGS -->
+        <mapping class="Server.Entity.Role"/>
         <mapping class="Server.Entity.Users"/>
     </session-factory>
 </hibernate-configuration>
