@@ -6,8 +6,12 @@
     1.2 Tools
 2. Data  
     2.1 Management  
-    2.2 ER Diagram
-    2.3 Dump  
+    2.2 ER Diagram  
+3. Maven  
+    3.1 JUnit Jupiter  
+    3.2 Hibernate  
+    3.3 PostgreSQL  
+    3.4 json-simple  
 ---
 # 1 Technology #  
 ## 1.1 Languages ##  
