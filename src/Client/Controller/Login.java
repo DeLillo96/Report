@@ -1,9 +1,12 @@
 package Client.Controller;
 
+import Client.RemoteManager;
+import Shared.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.json.simple.JSONObject;
 
 public class Login {
     @FXML
@@ -18,6 +21,19 @@ public class Login {
      */
     @FXML
     public void loginButtonAction() {
+        try {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
 
+            RemoteManager remoteManager = RemoteManager.getInstance();
+            UserService userService = remoteManager.getUserService();
+            JSONObject response = userService.login(username, password);
+
+            if ((boolean) response.get("success")) {
+                System.out.println("logged");
+            } else throw new Exception(response.get("messages").toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
