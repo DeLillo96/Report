@@ -1,0 +1,16 @@
+.button {
+    -fx-font-family: Monospace;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+
+    -fx-background-color: #90dfaa;
+    -fx-border-color: #70bf8a;
+
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #fffd00;
+    -fx-border-color: #dbd925;
+}
