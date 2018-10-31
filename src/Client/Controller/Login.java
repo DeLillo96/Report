@@ -1,5 +1,6 @@
 package Client.Controller;
 
+import Client.ControllerManager;
 import Client.RemoteManager;
 import Shared.UserService;
 import javafx.fxml.FXML;
@@ -30,10 +31,10 @@ public class Login {
             JSONObject response = userService.login(username, password);
 
             if ((boolean) response.get("success")) {
-                System.out.println("logged");
+                ControllerManager.getInstance().notifySuccess(response.get("messages").toString());
             } else throw new Exception(response.get("messages").toString());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ControllerManager.getInstance().notifyError(e.getMessage());
         }
     }
 }

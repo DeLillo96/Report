@@ -14,3 +14,41 @@
     -fx-background-color: #fffd00;
     -fx-border-color: #dbd925;
 }
+
+.circle-button {
+    -fx-text-fill: #444;
+    -fx-font-size: 13;
+
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+
+    -fx-pref-height: 29;
+    -fx-pref-width: 29;
+
+    -fx-min-height: 29;
+    -fx-min-width: 29;
+}
+
+.orange-button {
+    -fx-background-color: #f58118;
+    -fx-border-color: #d04615;
+}
+
+.error-panel {
+    -fx-background-color: #d50039
+}
+
+.success-panel {
+    -fx-background-color: #009ea6
+}
+
+.radius-15 {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.text-area {
+    -fx-font-family: Monospace;
+    -fx-font-size: 20;
+    -fx-alignment: center;
+}
