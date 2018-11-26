@@ -15,6 +15,7 @@ public class RemoteManager {
         Registry registry = LocateRegistry.createRegistry(port);
 
         registry.rebind("user", new UserServiceImplementation());
+        registry.rebind("calendar", new CalendarServiceImplementation());
     }
 
     public int getPort() {

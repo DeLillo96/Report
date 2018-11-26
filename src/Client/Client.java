@@ -12,7 +12,6 @@ public class Client extends Application {
     /**
      * Method which launches the client
      * @param primaryStage (Main window)
-     * @throws Exception ignored
      */
     @Override
     public void start(Stage primaryStage) throws Exception {

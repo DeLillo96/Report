@@ -32,10 +32,11 @@ public class Login {
             JSONObject response = userService.login(username, password);
 
             if ((boolean) response.get("success")) {
-                NotifyManager.getInstance().notifySuccess(response.get("messages").toString());
+                ControllerManager.getInstance().renderHome();
             } else throw new Exception(response.get("messages").toString());
         } catch (Exception e) {
             NotifyManager.getInstance().notifyError(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

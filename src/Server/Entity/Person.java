@@ -5,8 +5,6 @@ import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Entity
 @FilterDefs({
@@ -39,8 +37,8 @@ public class Person extends AbstractEntity {
     private String telephone;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user")
-    private Users user;
+    @JoinColumn(name = "users")
+    private Users users;
 
     public Person() {
         this("", "", "", null);
@@ -50,7 +48,7 @@ public class Person extends AbstractEntity {
         this.name = name;
         this.lastName = lastName;
         this.telephone = telephone;
-        this.user = user;
+        this.users = user;
     }
 
     public Person(String name, String lastName) {
@@ -94,10 +92,10 @@ public class Person extends AbstractEntity {
     }
 
     public Users getUsers() {
-        return user;
+        return users;
     }
 
     public void setUsers(Users user) {
-        this.user = user;
+        this.users = user;
     }
 }

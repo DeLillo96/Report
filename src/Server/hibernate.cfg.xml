@@ -19,5 +19,6 @@
         <mapping class="Server.Entity.Role"/>
         <mapping class="Server.Entity.Users"/>
         <mapping class="Server.Entity.Person"/>
+        <mapping class="Server.Entity.Calendar"/>
     </session-factory>
 </hibernate-configuration>

@@ -44,6 +44,14 @@ public class ControllerManager {
     }
 
     /**
+     * Renders home view
+     * @throws IOException
+     */
+    public void renderHome() throws IOException {
+        renderFXML("Views/home.fxml");
+    }
+
+    /**
      * Method used to render a specific FXML resource
      * @param location (location of the FXML required resource)
      * @throws IOException

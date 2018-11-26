@@ -1,4 +1,4 @@
-.button {
+.button, .choice-box {
     -fx-font-family: Monospace;
     -fx-font-size: 30;
     -fx-font-weight: bold;
@@ -10,9 +10,17 @@
     -fx-cursor: hand;
 }
 
-.button:hover {
+.button:hover, .choice-box:hover, .calendar-box:hover {
     -fx-background-color: #fffd00;
     -fx-border-color: #dbd925;
+}
+
+.alone-button {
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+
+    -fx-min-width: 0;
+    -fx-min-height: 0;
 }
 
 .circle-button {
@@ -47,8 +55,46 @@
     -fx-border-radius: 15;
 }
 
-.text-area {
+.label, .text-area {
     -fx-font-family: Monospace;
     -fx-font-size: 20;
     -fx-alignment: center;
+}
+
+.text-field {
+    -fx-font-family: Monospace;
+    -fx-font-size: 20;
+    -fx-alignment: center;
+}
+
+.text-field-big {
+    -fx-font-size: 30;
+}
+
+.calendar-box {
+    -fx-backgroud-color: white;
+    -fx-font-size: 15;
+    -fx-font-family: Monospaced;
+    -fx-text-fill: darkslategray
+}
+
+.calendar-label {
+    -fx-font-size: 13;
+    -fx-font-family: Monospaced;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-background-color: #01e1c2;
+    -fx-border-color: #0fceca;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+.today-box {
+    -fx-background-color: #f58118;
+    -fx-border-color: #d04615;
+}
+
+.unactive-box:hover {
+    -fx-background-color: #dbd925;
+    -fx-border-color: #b9b71e;
 }

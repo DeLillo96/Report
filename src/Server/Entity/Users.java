@@ -45,8 +45,8 @@ public class Users extends AbstractEntity {
     @JoinColumn(name = "role")
     private Role role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<Person> user = new HashSet<>();
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Set<Person> users = new HashSet<>();
 
     public Users() {
         this("", "", null, null);

@@ -1,5 +1,6 @@
 package Client;
 
+import Shared.BaseService;
 import Shared.UserService;
 
 import java.rmi.RemoteException;
@@ -24,5 +25,9 @@ public class RemoteManager {
 
     public UserService getUserService() throws Exception {
         return (UserService) registry.lookup("user");
+    }
+
+    public BaseService getCalendarService() throws Exception {
+        return (BaseService) registry.lookup("calendar");
     }
 }
