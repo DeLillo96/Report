@@ -2,9 +2,12 @@ package Server.Entity;
 
 import org.hibernate.annotations.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @FilterDefs({
@@ -39,6 +42,9 @@ public class Person extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "users")
     private Users users;
+
+    @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    private Set<Location> locations = new HashSet<>();
 
     public Person() {
         this("", "", "", null);
