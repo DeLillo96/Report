@@ -23,6 +23,28 @@
     -fx-min-height: 0;
 }
 
+.tooltip {
+    -fx-font-size: 25;
+    -fx-border-color: rgba(0, 140, 240, 0.8);
+    -fx-background-color: rgba(0, 100, 205, 0.8);
+
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+
+    -webkit-animation-delay: 500ms;
+    -moz-animation-delay: 500ms;
+    -o-animation-delay: 500ms;
+    animation-delay: 500ms;
+}
+
+.row-button {
+    -fx-pref-width: 38;
+    -fx-pref-height: 38;
+
+    -fx-min-width: 0;
+    -fx-min-height: 0;
+}
+
 .circle-button {
     -fx-text-fill: #444;
     -fx-font-size: 13;
@@ -42,6 +64,22 @@
     -fx-border-color: #d04615;
 }
 
+.red-button, .red-button .tooltip {
+    -fx-background-color: #e63906;
+    -fx-border-color: #ba0000;
+}
+
+.green-button, .green-button .tooltip {
+    -fx-background-color: #16c744;
+    -fx-border-color: #21a657;
+}
+
+.choice-box-table, .button-table {
+    -fx-font-size: 20;
+    -fx-font-weight: normal;
+    -fx-pref-width: 245;
+}
+
 .error-panel {
     -fx-background-color: #d50039
 }
@@ -53,6 +91,15 @@
 .radius-15 {
     -fx-background-radius: 15;
     -fx-border-radius: 15;
+}
+
+.row-HBox {
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+.popup-HBox {
+    -fx-alignment: center;
 }
 
 .label, .text-area {
@@ -69,6 +116,18 @@
 
 .text-field-big {
     -fx-font-size: 30;
+}
+
+.anchor-pane-popup {
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+
+    -fx-background-color: #bbb;
+    -fx-border-color: #999;
+}
+
+.table-cell {
+    -fx-alignment: baseline-center;
 }
 
 .calendar-box {
@@ -89,6 +148,10 @@
     -fx-background-radius: 15;
 }
 
+.unactive-box {
+    -fx-background-color: #E9F2F5;
+}
+
 .today-box {
     -fx-background-color: #f58118;
     -fx-border-color: #d04615;
@@ -97,4 +160,10 @@
 .unactive-box:hover {
     -fx-background-color: #dbd925;
     -fx-border-color: #b9b71e;
+}
+
+.filter-box {
+    -fx-border-color: #00a649;
+    -fx-border-width: 5;
+    -fx-border-radius: 15;
 }

@@ -30,15 +30,30 @@ public class UsersRepository extends AbstractRepository {
 
     public boolean login(String username, String password) {
         HashMap<String, Object> params = new HashMap<>();
+        String hashedPassword;
         params.put("username", username);
         try {
-            params.put("password", Users.hashPassword(password));
+            hashedPassword = Users.hashPassword(password);
+            params.put("password", hashedPassword);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return false;
         }
 
-        List user = read(params);
-        return (user != null && user.size() == 1);
+        List users = read(params);
+        if (users != null && users.size() > 1) {
+            for (Object object : users) {
+                Users user = (Users) object;
+                if (user.getUsername().equals(username) &&
+                        user.getPassword().equals(hashedPassword)
+                ) {
+                    return true;
+                }
+            }
+        } else {
+            assert users != null;
+            return users.size() == 1;
+        }
+        return false;
     }
 }

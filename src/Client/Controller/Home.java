@@ -18,6 +18,8 @@ public class Home {
     private TabPane mainTabPane;
     @FXML
     private Tab homeTab;
+    @FXML
+    private Tab usersTab;
 
     /**
      * For each tab in the tabPane, this methos loads an FXML file resource and set it to a specific tab
@@ -27,5 +29,8 @@ public class Home {
     public void initialize() throws IOException {
         AnchorPane homePane = FXMLLoader.load(getClass().getResource("../Views/calendar.fxml"));
         homeTab.setContent(homePane);
+
+        AnchorPane usersPane = FXMLLoader.load(getClass().getResource("../Views/users.fxml"));
+        usersTab.setContent(usersPane);
     }
 }

@@ -20,7 +20,7 @@ import java.util.Set;
 })
 @Filters({
         @Filter(name = "id", condition = "id = :id"),
-        @Filter(name = "username", condition = "username like :username"),
+        @Filter(name = "username", condition = "username like '%' || :username || '%'"),
         @Filter(name = "password", condition = "password like :password"),
         @Filter(name = "email", condition = "email like :email")
 })
