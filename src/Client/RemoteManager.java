@@ -30,4 +30,8 @@ public class RemoteManager {
     public BaseService getCalendarService() throws Exception {
         return (BaseService) registry.lookup("calendar");
     }
+
+    public BaseService getRoleService() throws Exception {
+        return (BaseService) registry.lookup("role");
+    }
 }
