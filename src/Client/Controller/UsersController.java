@@ -44,9 +44,9 @@ public class UsersController extends AbstractTableController {
         ArrayList<Users> list = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            JSONObject child = (JSONObject) data.get(i);
+            JSONObject user = (JSONObject) data.get(i);
 
-            list.add(new Users(this, child));
+            list.add(new Users(this, user));
         }
 
         return list;

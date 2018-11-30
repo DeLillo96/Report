@@ -1,11 +1,16 @@
 package Client;
 
+import Client.Controller.SetRolesController;
+import Client.Model.Users;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Stack;
 
 /**
  * This singleton class handles all the renders of the application (popups and notifies)
@@ -13,6 +18,7 @@ import java.io.IOException;
 public class ControllerManager {
     private static ControllerManager instance;
     private static Stage stage;
+    private static Stack<Parent> popup = new Stack<>();
 
     /**
      * Singleton method
@@ -49,6 +55,42 @@ public class ControllerManager {
      */
     public void renderHome() throws IOException {
         renderFXML("Views/home.fxml");
+    }
+
+    public void renderSetRoles(Users user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/setRoles.fxml"));
+            addPopup(loader.load());
+
+            SetRolesController setRolesController = loader.getController();
+            setRolesController.setUsers(user);
+
+            setRolesController.filter();
+        } catch (IOException e) {
+            NotifyManager.getInstance().notifyError(e.getMessage());
+        }
+    }
+    /**
+     * Add a popup to a generic stack
+     * @param parent (Base of the client's view)
+     */
+    public void addPopup(Parent parent) {
+        int offset = popup.size() * 10;
+        AnchorPane.setTopAnchor(parent, 20d + offset);
+        AnchorPane.setBottomAnchor(parent, 20d + offset);
+        AnchorPane.setLeftAnchor(parent, 10d + offset);
+        AnchorPane.setRightAnchor(parent, 10d + offset);
+
+        Pane mainRoot = (Pane) getScene().getRoot();
+        mainRoot.getChildren().add(popup.push(parent));
+    }
+
+    /**
+     * Remove the last inserted popup from the popup stack
+     */
+    public void removePopup() {
+        Pane mainRoot = (Pane) getScene().getRoot();
+        mainRoot.getChildren().remove(popup.pop());
     }
 
     /**

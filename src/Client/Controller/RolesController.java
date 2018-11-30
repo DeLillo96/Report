@@ -24,7 +24,7 @@ public class RolesController extends AbstractTableController {
     }
 
     /**
-     * Generates a new Child model in order to add it to the tableView as a new row
+     * Generates a new Role model in order to add it to the tableView as a new row
      * @throws Exception
      */
     @FXML
@@ -54,5 +54,4 @@ public class RolesController extends AbstractTableController {
 
         return list;
     }
-
 }

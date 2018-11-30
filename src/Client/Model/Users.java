@@ -1,14 +1,16 @@
 package Client.Model;
 
 import Client.Controller.AbstractTableController;
+import Client.ControllerManager;
 import Client.RemoteManager;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.json.simple.JSONObject;
 
 public class Users extends AbstractRowModel {
     private TextField username = new TextField();
     private PasswordField password = new PasswordField();
+    private Label role = new Label();
+    private Button roles = new Button();
 
     public Users(AbstractTableController tableController) throws Exception {
         this(tableController, new JSONObject());
@@ -21,9 +23,21 @@ public class Users extends AbstractRowModel {
         events();
     }
 
-    /**
-     * Method used to set liadmin   adminsteners and related events to trigger
-     */
+    @Override
+    protected void initializeButtons() {
+        super.initializeButtons();
+
+        roles = new Button();
+        defineImageButton(roles, "Client/Resources/Images/role.png");
+        roles.setOnAction(actionEvent -> roles());
+        roles.setTooltip(new Tooltip("Set Role"));
+
+        if (data.size() == 0) {
+            roles.setVisible(false);
+        }
+        getButtons().getChildren().addAll(roles);
+    }
+
     public void events() {
         username.textProperty().addListener((obs, oldText, newText) -> {
             needToSave();
@@ -36,9 +50,16 @@ public class Users extends AbstractRowModel {
     }
 
     @Override
-    protected void refreshModel() {
+    public void refreshModel() {
         setUsername((String) data.get("username"));
         setPassword((String) data.get("password"));
+        if (null != data.get("role")) {
+            setRole((String) ((JSONObject) data.get("role")).get("name"));
+        }
+    }
+
+    public void roles() {
+        ControllerManager.getInstance().renderSetRoles(this);
     }
 
     public int getId() {
@@ -75,5 +96,30 @@ public class Users extends AbstractRowModel {
 
     public String getStringPassword() {
         return password.getText();
+    }
+    
+    public Label getRole() {
+        return role;
+    }
+
+    public void setRole(Label role) {
+        if (role != null) this.role = role;
+    }
+
+    public void setRole(String role) {
+        this.role.setText(role);
+    }
+
+    public String getStringRole() {
+        return role.getText();
+    }
+
+    public Integer getRoleId() {
+        return Integer.parseInt((String) ((JSONObject) data.get("role")).get("id"));
+    }
+
+    public void newRole(JSONObject newRole) {
+        data.put("role", newRole);
+        save();
     }
 }

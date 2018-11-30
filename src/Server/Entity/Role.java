@@ -27,7 +27,7 @@ public class Role extends AbstractEntity {
     @PrimaryKeyJoinColumn
     private Integer id;
 
-    @Column(unique = true, nullable = false, length = 16)
+    @Column(unique = true, nullable = false, length = 32)
     private String name;
 
     @Column(nullable = false, length = 255)
