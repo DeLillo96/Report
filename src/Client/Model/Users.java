@@ -115,6 +115,7 @@ public class Users extends AbstractRowModel {
     }
 
     public Integer getRoleId() {
+        if (null == data.get("role")) return 0;
         return Integer.parseInt((String) ((JSONObject) data.get("role")).get("id"));
     }
 

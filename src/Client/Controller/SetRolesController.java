@@ -6,6 +6,7 @@ import Client.Model.Users;
 import Client.NotifyManager;
 import Client.RemoteManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import org.json.simple.JSONObject;
@@ -17,6 +18,8 @@ public class SetRolesController extends AbstractTableController {
     private TextField roleTextField;
     @FXML
     private TextField descriptionTextField;
+    @FXML
+    private Label usernameLabel;
 
     private Users user;
 
@@ -77,5 +80,6 @@ public class SetRolesController extends AbstractTableController {
 
     public void setUsers(Users user) {
         this.user = user;
+        usernameLabel.setText(user.getStringUsername());
     }
 }
