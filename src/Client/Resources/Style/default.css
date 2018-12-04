@@ -25,8 +25,8 @@
 
 .tooltip {
     -fx-font-size: 25;
-    -fx-border-color: rgba(0, 140, 240, 0.8);
-    -fx-background-color: rgba(0, 100, 205, 0.8);
+    -fx-border-color: rgba(0, 135, 65, 0.8);
+    -fx-background-color: rgba(0, 90, 44, 0.8);
 
     -fx-background-radius: 15;
     -fx-border-radius: 15;
