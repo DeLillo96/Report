@@ -12,6 +12,7 @@
         <Tab fx:id="homeTab" closable="false" text="Home"/>
         <Tab fx:id="projectsTab" closable="false" text="Projects"/>
         <Tab fx:id="usersTab" closable="false" text="Users"/>
+        <Tab fx:id="employeeTab" closable="false" text="Employee"/>
         <Tab fx:id="rolesTab" closable="false" text="Roles"/>
     </TabPane>
 </AnchorPane>

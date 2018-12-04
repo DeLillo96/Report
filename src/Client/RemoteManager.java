@@ -38,4 +38,8 @@ public class RemoteManager {
     public BaseService getProjectService() throws Exception {
         return (BaseService) registry.lookup("project");
     }
+
+    public BaseService getEmployeeService() throws Exception {
+        return (BaseService) registry.lookup("employee");
+    }
 }

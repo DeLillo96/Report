@@ -34,7 +34,7 @@ public class Role extends AbstractEntity {
     private String description;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<Users> role = new HashSet<>();
+    private Set<Employee> role = new HashSet<>();
 
     public Role() {
         this("", "");

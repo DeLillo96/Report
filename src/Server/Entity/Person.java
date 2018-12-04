@@ -2,28 +2,25 @@ package Server.Entity;
 
 import org.hibernate.annotations.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @FilterDefs({
         @FilterDef(name = "id", parameters = @ParamDef(name = "id", type = "integer")),
         @FilterDef(name = "name", parameters = @ParamDef(name = "name", type = "string")),
         @FilterDef(name = "lastName", parameters = @ParamDef(name = "lastName", type = "string")),
+        @FilterDef(name = "fiscalCode", parameters = {@ParamDef(name = "fiscalCode", type = "string")}),
         @FilterDef(name = "telephone", parameters = @ParamDef(name = "telephone", type = "string"))
 })
 @Filters({
         @Filter(name = "id", condition = "id = :id"),
-        @Filter(name = "name", condition = "name like :name"),
-        @Filter(name = "lastName", condition = "lastName like :lastName"),
-        @Filter(name = "telephone", condition = "telephone like :telephone")
+        @Filter(name = "name", condition = "name like '%' || :name || '%'"),
+        @Filter(name = "lastName", condition = "lastName like '%' || :lastName || '%'"),
+        @Filter(name = "fiscalCode", condition = "fiscalCode like '%' || :fiscalCode || '%'"),
+        @Filter(name = "telephone", condition = "telephone like '%' || :telephone || '%'")
 })
-@Table(name = "Person")
-public class Person extends AbstractEntity {
+public abstract class Person extends AbstractEntity {
 
     @Id
     @GeneratedValue
@@ -36,33 +33,29 @@ public class Person extends AbstractEntity {
     @Column(nullable = false, length = 16)
     private String lastName;
 
+    @Column(unique = true, length = 16)
+    private String fiscalCode;
+
     @Column(unique = true, length = 10)
     private String telephone;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "users")
-    private Users users;
-
+    /*
     @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Set<Location> locations = new HashSet<>();
-
+    */
     public Person() {
-        this("", "", "", null);
+        this("", "", "", "");
     }
 
-    public Person(String name, String lastName, String telephone, Users user) {
+    public Person(String name, String lastName, String fiscalCode, String telephone) {
         this.name = name;
         this.lastName = lastName;
         this.telephone = telephone;
-        this.users = user;
+        this.fiscalCode = fiscalCode;
     }
 
-    public Person(String name, String lastName) {
-        this(name, lastName, null, null);
-    }
-
-    public Person(String name, String lastName, String telephone) {
-        this(name, lastName, telephone, null);
+    public Person(String name, String lastName, String fiscalCode) {
+        this(name, lastName, fiscalCode, "");
     }
 
     public Integer getId() {
@@ -89,6 +82,14 @@ public class Person extends AbstractEntity {
         this.lastName = lastName;
     }
 
+    public String getFiscalCode() {
+        return fiscalCode;
+    }
+
+    public void setFiscalCode(String fiscalCode) {
+        this.fiscalCode = fiscalCode;
+    }
+
     public String getTelephone() {
         return telephone;
     }
@@ -97,11 +98,21 @@ public class Person extends AbstractEntity {
         this.telephone = telephone;
     }
 
-    public Users getUsers() {
-        return users;
-    }
+    @Override
+    protected void beforeSave() {
+        super.beforeSave();
 
-    public void setUsers(Users user) {
-        this.users = user;
+        String correctName = this.getName();
+        if(!validateString(correctName, "^[\\p{L} .'-]+$")) throw new IllegalArgumentException("Violated constraints on name field (No symbols allowed, no numbers allowed, max length = 32)");
+        this.setName(nameCorrector(correctName));
+
+        String correctSurname = this.getLastName();
+        if(!validateString(correctSurname, "^[\\p{L} .'-]+$")) throw new IllegalArgumentException("Violated constraints on surname field (No symbols allowed, no numbers allowed, max length = 32)");
+        this.setLastName(nameCorrector(correctSurname));
+
+        String correctFiscalCode = this.getFiscalCode();
+        if(!validateString(correctFiscalCode, "^[a-zA-Z0-9]*$")) throw new IllegalArgumentException("Violated constraints on fiscal code field (Only numbers and letters are allowed, no spaces)");
+        if(this.getFiscalCode().length() != 16) throw new IllegalArgumentException("Violated constraints on fiscal code field (This field has to be filled with a sequence of 16 letters or numbers in any combination)");
+        this.setFiscalCode(correctFiscalCode.toUpperCase());
     }
 }

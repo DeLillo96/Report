@@ -19,7 +19,6 @@ public class RoleTest {
     @BeforeAll
     static void createUser() {
         role.save();
-        user.setRole(role);
         user.save();
     }
 
@@ -36,7 +35,6 @@ public class RoleTest {
 
         assertEquals(role.getName(), readRole.getName(), message);
         assertEquals(role.getDescription(), readRole.getDescription(), message);
-        assertEquals(role, user.getRole(), message);
     }
 
     @Test

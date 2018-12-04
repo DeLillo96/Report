@@ -32,7 +32,7 @@ public class Users extends AbstractEntity {
     @PrimaryKeyJoinColumn
     private Integer id;
 
-    @Column(unique = true, nullable = false, length = 16)
+    @Column(unique = true, nullable = false, length = 64)
     private String username;
 
     @Column(nullable = false)
@@ -41,30 +41,22 @@ public class Users extends AbstractEntity {
     @Column(unique = true, length = 32)
     private String email;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role")
-    private Role role;
 
     @OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<Person> users = new HashSet<>();
+    private Set<Employee> users = new HashSet<>();
 
     public Users() {
-        this("", "", null, null);
-    }
-
-    public Users(String username, String password, String email, Role role) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-    }
-
-    public Users(String username, String password) {
-        this(username, password, null, null);
+        this("", "", null);
     }
 
     public Users(String username, String password, String email) {
-        this(username, password, email, null);
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Users(String username, String password) {
+        this(username, password, null);
     }
 
     public static String hashPassword(String password) throws NoSuchAlgorithmException {
@@ -110,14 +102,6 @@ public class Users extends AbstractEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     @Override
