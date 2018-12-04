@@ -21,5 +21,6 @@
         <mapping class="Server.Entity.Location"/>
         <mapping class="Server.Entity.Person"/>
         <mapping class="Server.Entity.Calendar"/>
+        <mapping class="Server.Entity.Project"/>
     </session-factory>
 </hibernate-configuration>

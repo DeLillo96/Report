@@ -22,6 +22,8 @@ public class Home {
     private Tab usersTab;
     @FXML
     private Tab rolesTab;
+    @FXML
+    private Tab projectsTab;
 
     /**
      * For each tab in the tabPane, this methos loads an FXML file resource and set it to a specific tab
@@ -37,5 +39,8 @@ public class Home {
 
         AnchorPane rolesPane = FXMLLoader.load(getClass().getResource("../Views/roles.fxml"));
         rolesTab.setContent(rolesPane);
+
+        AnchorPane projectsPane = FXMLLoader.load(getClass().getResource("../Views/projects.fxml"));
+        projectsTab.setContent(projectsPane);
     }
 }
