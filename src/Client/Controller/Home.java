@@ -36,12 +36,6 @@ public class Home {
         AnchorPane homePane = FXMLLoader.load(getClass().getResource("../Views/calendar.fxml"));
         homeTab.setContent(homePane);
 
-        AnchorPane usersPane = FXMLLoader.load(getClass().getResource("../Views/users.fxml"));
-        usersTab.setContent(usersPane);
-
-        AnchorPane rolesPane = FXMLLoader.load(getClass().getResource("../Views/roles.fxml"));
-        rolesTab.setContent(rolesPane);
-
         AnchorPane projectsPane = FXMLLoader.load(getClass().getResource("../Views/projects.fxml"));
         projectsTab.setContent(projectsPane);
 
