@@ -3,13 +3,10 @@ package Server.Entity;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @FilterDefs({
@@ -40,10 +37,6 @@ public class Users extends AbstractEntity {
 
     @Column(unique = true, length = 32)
     private String email;
-
-
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private Set<Employee> users = new HashSet<>();
 
     public Users() {
         this("", "", null);
