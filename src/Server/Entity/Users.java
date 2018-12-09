@@ -32,7 +32,7 @@ public class Users extends AbstractEntity {
     @PrimaryKeyJoinColumn
     private Integer id;
 
-    @Column(unique = true, nullable = false, length = 64)
+    @Column(unique = true, nullable = false, length = 16)
     private String username;
 
     @Column(nullable = false)

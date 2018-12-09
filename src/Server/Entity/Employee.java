@@ -40,8 +40,10 @@ public class Employee extends Person {
         super.beforeSave();
 
         if(getId() == null || getId() == 0 || getUsers() == null) {
-            String username = getName().replace(" ", ".").toLowerCase() + "." + getLastName().replace(" ", ".").toLowerCase() + "." + getFiscalCode().substring(12).toLowerCase();
-            Users newUser = new Users(username,username);
+            String username = getName().replace(" ", ".").substring(0,3).toLowerCase()
+                    + "." + getLastName().replace(" ", ".").substring(0,3).toLowerCase()
+                    + "." + getFiscalCode().substring(12).toLowerCase();
+            Users newUser = new Users(username, username);
             Result result = newUser.save();
             if(result.isSuccess()) {
                 setUsers(newUser);
