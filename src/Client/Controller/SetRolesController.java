@@ -1,9 +1,9 @@
 package Client.Controller;
 
-import Client.ControllerManager;
+import Client.ViewsManager;
 import Client.Model.SetRole;
 import Client.Model.Users;
-import Client.NotifyManager;
+import Client.ViewsManager;
 import Client.RemoteManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -39,7 +39,7 @@ public class SetRolesController extends AbstractTableController {
                 }
             }
         } catch (Exception e) {
-            NotifyManager.getInstance().notifyError(e.getMessage());
+            ViewsManager.getInstance().notifyError(e.getMessage());
         }
         remove();
     }
@@ -71,7 +71,7 @@ public class SetRolesController extends AbstractTableController {
     @FXML
     public void remove() {
         user.refreshModel();
-        ControllerManager.getInstance().removePopup();
+        ViewsManager.getInstance().removePopup();
     }
 
     public Users getUsers() {

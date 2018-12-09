@@ -1,5 +1,6 @@
 package Client;
 
+import Client.Controller.AbstractNotifyController;
 import Client.Controller.SetRolesController;
 import Client.Model.Users;
 import javafx.fxml.FXMLLoader;
@@ -15,17 +16,18 @@ import java.util.Stack;
 /**
  * This singleton class handles all the renders of the application (popups and notifies)
  */
-public class ControllerManager {
-    private static ControllerManager instance;
+public class ViewsManager {
+    private static ViewsManager instance;
     private static Stage stage;
     private static Stack<Parent> popup = new Stack<>();
+    private static Parent notify;
 
     /**
      * Singleton method
-     * @return instance of ControllerManager
+     * @return instance of ViewsManager
      */
-    public static ControllerManager getInstance() {
-        if (instance == null) instance = new ControllerManager();
+    public static ViewsManager getInstance() {
+        if (instance == null) instance = new ViewsManager();
         return instance;
     }
 
@@ -34,7 +36,7 @@ public class ControllerManager {
     }
 
     public void setStage(Stage stage) {
-        ControllerManager.stage = stage;
+        ViewsManager.stage = stage;
     }
 
     public Scene getScene() {
@@ -67,7 +69,7 @@ public class ControllerManager {
 
             setRolesController.filter();
         } catch (IOException e) {
-            NotifyManager.getInstance().notifyError(e.getMessage());
+            notifyError(e.getMessage());
         }
     }
     /**
@@ -91,6 +93,60 @@ public class ControllerManager {
     public void removePopup() {
         Pane mainRoot = (Pane) getScene().getRoot();
         mainRoot.getChildren().remove(popup.pop());
+    }
+
+    /**
+     * Renders error notification
+     * @param errorMessage (Error message shown in the notification)
+     */
+    public void notifyError(String errorMessage) {
+        if (notify != null) removeNotify();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/error.fxml"));
+            notify = loader.load();
+
+            addNotify(loader, errorMessage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Renders success notification
+     * @param successMessage (Success message shown in the notification)
+     */
+    public void notifySuccess(String successMessage) {
+        if (notify != null) removeNotify();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/success.fxml"));
+            notify = loader.load();
+
+            addNotify(loader, successMessage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Renders a generic notification
+     * @param loader (Current loader)
+     * @param message (Message shown in the notification)
+     */
+    protected void addNotify(FXMLLoader loader, String message) {
+        AbstractNotifyController controller = loader.getController();
+        controller.setMessage(message);
+
+        Pane mainRoot = (Pane) getScene().getRoot();
+        mainRoot.getChildren().add(notify);
+    }
+
+    /**
+     * Remove last notification
+     */
+    public void removeNotify() {
+        Pane mainRoot = (Pane) getScene().getRoot();
+        mainRoot.getChildren().remove(notify);
+        notify = null;
     }
 
     /**

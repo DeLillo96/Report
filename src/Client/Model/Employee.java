@@ -80,11 +80,11 @@ public class Employee extends AbstractRowModel {
     }
 
     public void roles() {
-        //ControllerManager.getInstance().renderSetRoles(this);
+        //ViewsManager.getInstance().renderSetRoles(this);
     }
 
     public void user() {
-        //ControllerManager.getInstance().renderModifyUser(this);
+        //ViewsManager.getInstance().renderModifyUser(this);
     }
 
     public int getId() {

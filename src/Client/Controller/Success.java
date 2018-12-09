@@ -1,6 +1,6 @@
 package Client.Controller;
 
-import Client.NotifyManager;
+import Client.ViewsManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -25,7 +25,7 @@ public class Success extends AbstractNotifyController {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        Platform.runLater(() -> NotifyManager.getInstance().removeNotify());
+                        Platform.runLater(() -> ViewsManager.getInstance().removeNotify());
                     }
                 },
                 4500

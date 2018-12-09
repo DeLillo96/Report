@@ -1,7 +1,7 @@
 package Client.Controller;
 
 import Client.Model.CalendarDay;
-import Client.NotifyManager;
+import Client.ViewsManager;
 import Client.RemoteManager;
 import Shared.BaseService;
 import javafx.fxml.FXML;
@@ -87,7 +87,7 @@ public class CalendarController {
             filters.put("dateTo", toDate);
             result = calendarServices.read(filters);
         } catch (Exception e) {
-            NotifyManager.getInstance().notifyError("Server communication error");
+            ViewsManager.getInstance().notifyError("Server communication error");
         }
 
         if((result!=null) && ((boolean) result.get("success"))) {
@@ -145,7 +145,7 @@ public class CalendarController {
             }
             loadCalendarLabels(selectedMonth, selectedYear);
         } catch (Exception e) {
-            NotifyManager.getInstance().notifyError("Please insert a valid year");
+            ViewsManager.getInstance().notifyError("Please insert a valid year");
         }
     }
 
@@ -200,7 +200,7 @@ public class CalendarController {
             calendarServices = RemoteManager.getInstance().getCalendarService();
         } catch (Exception e) {
             e.printStackTrace();
-            NotifyManager.getInstance().notifyError("Server communication error (Can't call calendar services)");
+            ViewsManager.getInstance().notifyError("Server communication error (Can't call calendar services)");
         }
         selectedMonth = Calendar.getInstance().get(Calendar.MONTH);
         selectedYear = Calendar.getInstance().get(Calendar.YEAR);

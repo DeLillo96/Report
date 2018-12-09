@@ -1,7 +1,7 @@
 package Client.Model;
 
 import Client.Controller.AbstractTableController;
-import Client.ControllerManager;
+import Client.ViewsManager;
 import Client.RemoteManager;
 import javafx.scene.control.*;
 import org.json.simple.JSONObject;
@@ -59,7 +59,7 @@ public class Users extends AbstractRowModel {
     }
 
     public void roles() {
-        ControllerManager.getInstance().renderSetRoles(this);
+        ViewsManager.getInstance().renderSetRoles(this);
     }
 
     public int getId() {

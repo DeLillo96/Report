@@ -15,7 +15,7 @@ public class Client extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ControllerManager main = ControllerManager.getInstance();
+        ViewsManager main = ViewsManager.getInstance();
         main.setStage(primaryStage);
 
         main.renderLogin();

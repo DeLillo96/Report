@@ -1,7 +1,7 @@
 package Client.Controller;
 
 import Client.Model.Project;
-import Client.NotifyManager;
+import Client.ViewsManager;
 import Client.RemoteManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -58,7 +58,7 @@ public class ProjectsController extends AbstractTableController {
                 filters.put("expireTo", toDate);
             }
         } catch (ParseException e) {
-            NotifyManager.getInstance().notifyError("Invalid dates (Required format: yyyy-MM-dd");
+            ViewsManager.getInstance().notifyError("Invalid dates (Required format: yyyy-MM-dd");
         }
         filters.put("description", descriptionTextField.getText());
 

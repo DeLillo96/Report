@@ -1,7 +1,7 @@
 package Client.Controller;
 
 import Client.Model.AbstractRowModel;
-import Client.NotifyManager;
+import Client.ViewsManager;
 import Shared.BaseService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +39,7 @@ public abstract class AbstractTableController {
             newRowFlag = true;
         } catch (Exception e) {
             e.printStackTrace();
-            NotifyManager.getInstance().notifyError(e.getMessage());
+            ViewsManager.getInstance().notifyError(e.getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ public abstract class AbstractTableController {
 
     protected void notifyResult(JSONObject result) throws Exception {
         if ((boolean) result.get("success")) {
-            NotifyManager.getInstance().notifySuccess(result.get("messages").toString());
+            ViewsManager.getInstance().notifySuccess(result.get("messages").toString());
         } else {
             String errorMessage = result.get("messages").toString();
             throw new Exception(errorMessage);

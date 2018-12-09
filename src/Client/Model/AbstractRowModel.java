@@ -1,7 +1,7 @@
 package Client.Model;
 
 import Client.Controller.AbstractTableController;
-import Client.NotifyManager;
+import Client.ViewsManager;
 import Shared.BaseService;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -85,7 +85,7 @@ public abstract class AbstractRowModel {
             }
             notifyResult(result);
         } catch (Exception e) {
-            NotifyManager.getInstance().notifyError(e.getMessage());
+            ViewsManager.getInstance().notifyError(e.getMessage());
         }
     }
 
@@ -100,7 +100,7 @@ public abstract class AbstractRowModel {
             if(data.size() == 0) controller.setNewRowFlag(true);
             notifyResult(result);
         } catch (Exception e) {
-            NotifyManager.getInstance().notifyError(e.getMessage());
+            ViewsManager.getInstance().notifyError(e.getMessage());
         }
     }
 
@@ -110,9 +110,9 @@ public abstract class AbstractRowModel {
      */
     protected void notifyResult(JSONObject result) {
         if ((boolean) result.get("success")) {
-            NotifyManager.getInstance().notifySuccess(result.get("messages").toString());
+            ViewsManager.getInstance().notifySuccess(result.get("messages").toString());
         } else {
-            NotifyManager.getInstance().notifyError(result.get("messages").toString());
+            ViewsManager.getInstance().notifyError(result.get("messages").toString());
         }
     }
 

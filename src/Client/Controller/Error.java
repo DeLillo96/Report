@@ -1,6 +1,6 @@
 package Client.Controller;
 
-import Client.NotifyManager;
+import Client.ViewsManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -19,7 +19,7 @@ public class Error extends AbstractNotifyController {
      */
     @FXML
     private void remove() {
-        NotifyManager.getInstance().removeNotify();
+        ViewsManager.getInstance().removeNotify();
     }
 
     @Override
