@@ -1,8 +1,8 @@
 package Client.Controller;
 
-import Client.ViewsManager;
-import Client.ViewsManager;
+import Client.ControllerManager;
 import Client.RemoteManager;
+import Client.ViewsManager;
 import Shared.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,6 +32,8 @@ public class Login {
             JSONObject response = userService.login(username, password);
 
             if ((boolean) response.get("success")) {
+                JSONObject role = (JSONObject) ((JSONObject) response.get("data")).get("role");
+                if(null != role) ControllerManager.getInstance().setRole((Integer) role.get("id"));
                 ViewsManager.getInstance().renderHome();
             } else throw new Exception(response.get("messages").toString());
         } catch (Exception e) {

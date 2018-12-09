@@ -2,6 +2,7 @@ package Server.Remote;
 
 import Server.Entity.EntityInterface;
 import Server.Entity.Users;
+import Server.Repository.EmployeeRepository;
 import Server.Repository.UsersRepository;
 import Server.Result;
 import Shared.UserService;
@@ -23,6 +24,8 @@ public class UserServiceImplementation extends AbstractBaseService implements Us
         if (!((new UsersRepository()).login(username, password))) {
             result.setSuccess(false);
             result.addMessage("Password or Username are invalid");
+        } else {
+            result.addData((new EmployeeRepository()).getEmployeeByUsername(username));
         }
 
         return result.toJson();
