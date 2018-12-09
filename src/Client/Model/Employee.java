@@ -81,7 +81,7 @@ public class Employee extends AbstractRowModel {
     }
 
     public void roles() {
-        //ViewsManager.getInstance().renderSetRoles(this);
+        ViewsManager.getInstance().renderSetRoles(this);
     }
 
     public void user() {

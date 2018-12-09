@@ -1,10 +1,9 @@
 package Client.Controller;
 
-import Client.ViewsManager;
+import Client.Model.Employee;
 import Client.Model.SetRole;
-import Client.Model.Users;
-import Client.ViewsManager;
 import Client.RemoteManager;
+import Client.ViewsManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,9 +18,9 @@ public class SetRolesController extends AbstractTableController {
     @FXML
     private TextField descriptionTextField;
     @FXML
-    private Label usernameLabel;
+    private Label employeenameLabel;
 
-    private Users user;
+    private Employee employee;
 
     final ToggleGroup group = new ToggleGroup();
 
@@ -35,7 +34,7 @@ public class SetRolesController extends AbstractTableController {
             for (int i = 0; i < tableView.getItems().size(); i++) {
                 SetRole item = (SetRole) tableView.getItems().get(i);
                 if(item.getSet().isSelected()) {
-                    user.newRole(item.getData());
+                    employee.newRole(item.getData());
                 }
             }
         } catch (Exception e) {
@@ -60,7 +59,7 @@ public class SetRolesController extends AbstractTableController {
 
         for (int i = 0; i < data.size(); i++) {
             JSONObject role = (JSONObject) data.get(i);
-            boolean oldset = user.getRoleId().equals(Integer.parseInt((String) role.get("id")));
+            boolean oldset = employee.getRoleId().equals(Integer.parseInt((String) role.get("id")));
 
             list.add(new SetRole(this, role, oldset, group));
         }
@@ -70,16 +69,15 @@ public class SetRolesController extends AbstractTableController {
 
     @FXML
     public void remove() {
-        user.refreshModel();
+        employee.refreshModel();
         ViewsManager.getInstance().removePopup();
     }
 
-    public Users getUsers() {
-        return user;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUsers(Users user) {
-        this.user = user;
-        usernameLabel.setText(user.getStringUsername());
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

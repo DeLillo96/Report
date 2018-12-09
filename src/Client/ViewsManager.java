@@ -4,7 +4,6 @@ import Client.Controller.AbstractNotifyController;
 import Client.Controller.ModifyUserController;
 import Client.Controller.SetRolesController;
 import Client.Model.Employee;
-import Client.Model.Users;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -62,13 +61,13 @@ public class ViewsManager {
         renderFXML("Views/home.fxml");
     }
 
-    public void renderSetRoles(Users user) {
+    public void renderSetRoles(Employee employee) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/setRoles.fxml"));
             addPopup(loader.load());
 
             SetRolesController setRolesController = loader.getController();
-            setRolesController.setUsers(user);
+            setRolesController.setEmployee(employee);
 
             setRolesController.filter();
         } catch (IOException e) {

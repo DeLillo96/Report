@@ -94,7 +94,7 @@
                 </HBox>
             <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="usernameLabel" styleClass="text-field-big" text="Username" />
+                  <Label fx:id="usernameLabel" styleClass="text-field-big" text="Employee" />
                </children>
             </HBox>
             </children>
