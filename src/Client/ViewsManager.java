@@ -1,7 +1,9 @@
 package Client;
 
 import Client.Controller.AbstractNotifyController;
+import Client.Controller.ModifyUserController;
 import Client.Controller.SetRolesController;
+import Client.Model.Employee;
 import Client.Model.Users;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -72,6 +75,20 @@ public class ViewsManager {
             notifyError(e.getMessage());
         }
     }
+
+    public void renderModifyUser(Employee employee, JSONObject user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/modifyUser.fxml"));
+            addPopup(loader.load());
+
+            ModifyUserController modifyUserController = loader.getController();
+            modifyUserController.setUser(user);
+        } catch (IOException e) {
+            notifyError(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Add a popup to a generic stack
      * @param parent (Base of the client's view)

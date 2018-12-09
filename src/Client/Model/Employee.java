@@ -2,6 +2,7 @@ package Client.Model;
 
 import Client.Controller.AbstractTableController;
 import Client.RemoteManager;
+import Client.ViewsManager;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -84,7 +85,7 @@ public class Employee extends AbstractRowModel {
     }
 
     public void user() {
-        //ViewsManager.getInstance().renderModifyUser(this);
+        ViewsManager.getInstance().renderModifyUser(this, getUser());
     }
 
     public int getId() {
@@ -174,6 +175,15 @@ public class Employee extends AbstractRowModel {
     public Integer getRoleId() {
         if (null == data.get("role")) return 0;
         return Integer.parseInt((String) ((JSONObject) data.get("role")).get("id"));
+    }
+
+    public Integer getUserId() {
+        if (null == data.get("user")) return 0;
+        return Integer.parseInt((String) ((JSONObject) data.get("user")).get("id"));
+    }
+
+    public JSONObject getUser() {
+        return (JSONObject) data.get("user");
     }
 
     public void newRole(JSONObject newRole) {
