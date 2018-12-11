@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "Employee")
 public class Employee extends Person {
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private Users user;
 
