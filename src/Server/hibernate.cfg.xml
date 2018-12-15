@@ -24,5 +24,7 @@
         <mapping class="Server.Entity.Project"/>
         <mapping class="Server.Entity.Customer"/>
         <mapping class="Server.Entity.CustomerContact"/>
+        <mapping class="Server.Entity.Time"/>
+        <mapping class="Server.Entity.Cost"/>
     </session-factory>
 </hibernate-configuration>
