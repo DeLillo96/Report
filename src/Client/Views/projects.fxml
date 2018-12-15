@@ -144,6 +144,11 @@
                         <PropertyValueFactory property="description" />
                     </cellValueFactory>
                 </TableColumn>
+            <TableColumn minWidth="-Infinity" prefWidth="-1.0" text="Customer">
+               <cellValueFactory>
+                  <PropertyValueFactory property="customer" />
+               </cellValueFactory>
+            </TableColumn>
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

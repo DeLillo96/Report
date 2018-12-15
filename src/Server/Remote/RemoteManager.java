@@ -19,6 +19,8 @@ public class RemoteManager {
         registry.rebind("role", new RoleServiceImplementation());
         registry.rebind("project", new ProjectServiceImplementation());
         registry.rebind("employee", new EmployeeServiceImplementation());
+        registry.rebind("customer", new CustomerServiceImplementation());
+        registry.rebind("customercontact", new CustomerContactServiceImplementation());
     }
 
     public int getPort() {
