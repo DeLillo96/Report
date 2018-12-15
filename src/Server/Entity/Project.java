@@ -3,9 +3,12 @@ package Server.Entity;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @FilterDefs({
@@ -39,14 +42,22 @@ public class Project extends AbstractEntity {
     @Column(nullable = false)
     private Date expire;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    private Set<Task> tasks = new HashSet<>();
+
     public Project() {
-        this("", "", new Date());
+        this("", "", new Date(), new Customer());
     }
 
-    public Project(String code, String description, Date expire) {
+    public Project(String code, String description, Date expire, Customer customer) {
         this.code = code;
         this.description = description;
         this.expire = expire;
+        this.customer = customer;
     }
 
     public Integer getId() {
@@ -79,5 +90,21 @@ public class Project extends AbstractEntity {
 
     public void setExpire(Date expire) {
         this.expire = expire;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }
