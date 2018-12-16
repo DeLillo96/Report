@@ -1,14 +1,17 @@
 package Server.Entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "Time")
+@Entity(name = "Time")
+@DiscriminatorValue("Time")
 public class Time extends Task {
 
-    public Time() {
+    public Time(String description) {
+        super(description);
     }
+
+    public Time() {}
 }
 
 

@@ -3,7 +3,9 @@ package Client;
 import Client.Controller.AbstractNotifyController;
 import Client.Controller.ModifyUserController;
 import Client.Controller.SetRolesController;
+import Client.Controller.SetTasksController;
 import Client.Model.Employee;
+import Client.Model.Project;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -70,6 +72,20 @@ public class ViewsManager {
             setRolesController.setEmployee(employee);
 
             setRolesController.filter();
+        } catch (IOException e) {
+            notifyError(e.getMessage());
+        }
+    }
+
+    public void renderSetTasks(Project project) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/setTasks.fxml"));
+            addPopup(loader.load());
+
+            SetTasksController setTasksController = loader.getController();
+            setTasksController.setProject(project);
+
+            setTasksController.filter();
         } catch (IOException e) {
             notifyError(e.getMessage());
         }

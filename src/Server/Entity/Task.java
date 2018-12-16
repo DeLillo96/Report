@@ -2,9 +2,10 @@ package Server.Entity;
 
 import org.hibernate.annotations.*;
 
-import javax.persistence.*;
 import javax.persistence.CascadeType;
+import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +18,10 @@ import java.util.Set;
         @Filter(name = "id", condition = "id = :id"),
         @Filter(name = "description", condition = "description like '%' || :description || '%'"),
 })
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type")
+@Table(name = "Task")
 public abstract class Task extends AbstractEntity {
 
     @Id
@@ -27,12 +32,10 @@ public abstract class Task extends AbstractEntity {
     @Column(nullable = false, length = 128)
     private String description;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "have",
-            joinColumns = {@JoinColumn(name = "task_id")},
-            inverseJoinColumns = {@JoinColumn(name = "project_id")}
-    )
+    @Column(insertable = false, updatable = false)
+    private String type;
+
+    @ManyToMany(mappedBy = "tasks", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private Set<Project> projects = new HashSet<>();
 
     public Task() {
@@ -57,6 +60,14 @@ public abstract class Task extends AbstractEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Set<Project> getProjects() {

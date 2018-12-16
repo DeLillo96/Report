@@ -1,6 +1,7 @@
 package Client;
 
 import Shared.BaseService;
+import Shared.RelationService;
 import Shared.UserService;
 
 import java.rmi.RemoteException;
@@ -45,5 +46,13 @@ public class RemoteManager {
 
     public BaseService getCustomerService() throws Exception {
         return (BaseService) registry.lookup("customer");
+    }
+
+    public BaseService getTaskService() throws Exception {
+        return (BaseService) registry.lookup("task");
+    }
+
+    public RelationService getProjectTaskService() throws Exception {
+        return (RelationService) registry.lookup("projectTask");
     }
 }

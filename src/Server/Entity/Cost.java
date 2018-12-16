@@ -1,14 +1,17 @@
 package Server.Entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "Cost")
+@Entity(name = "Cost")
+@DiscriminatorValue("Cost")
 public class Cost extends Task {
 
-    public Cost() {
+    public Cost(String description) {
+        super(description);
     }
+
+    public Cost(){}
 }
 
 

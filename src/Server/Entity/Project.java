@@ -46,7 +46,12 @@ public class Project extends AbstractEntity {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToMany(mappedBy = "projects", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "have",
+            joinColumns = {@JoinColumn(name = "project_id")},
+            inverseJoinColumns = {@JoinColumn(name = "task_id")}
+    )
     private Set<Task> tasks = new HashSet<>();
 
     public Project() {

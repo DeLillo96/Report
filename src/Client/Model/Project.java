@@ -2,6 +2,7 @@ package Client.Model;
 
 import Client.Controller.AbstractTableController;
 import Client.RemoteManager;
+import Client.ViewsManager;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -66,7 +67,7 @@ public class Project extends AbstractRowModel {
     }
 
     public void task() {
-
+        ViewsManager.getInstance().renderSetTasks(this);
     }
 
     public int getId() {
