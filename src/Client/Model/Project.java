@@ -2,8 +2,10 @@ package Client.Model;
 
 import Client.Controller.AbstractTableController;
 import Client.RemoteManager;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ public class Project extends AbstractRowModel {
     private TextField code = new TextField();
     private DatePicker expire = new DatePicker();
     private TextField description = new TextField();
+    
+    private Button task = new Button();
 
     public Project(AbstractTableController tableController) throws Exception {
         this(tableController, new JSONObject());
@@ -24,6 +28,21 @@ public class Project extends AbstractRowModel {
         events();
     }
 
+    @Override
+    protected void initializeButtons() {
+        super.initializeButtons();
+
+        task = new Button();
+        defineImageButton(task, "Client/Resources/Images/task.png");
+        task.setOnAction(actionEvent -> task());
+        task.setTooltip(new Tooltip("Set Role"));
+
+        if (data.size() == 0) {
+            task.setVisible(false);
+        }
+        getButtons().getChildren().addAll(task);
+    }
+    
     public void events() {
         code.textProperty().addListener((obs, oldText, newText) -> {
             needToSave();
@@ -44,6 +63,10 @@ public class Project extends AbstractRowModel {
         setCode((String) data.get("code"));
         setExpire((CharSequence) data.get("expire"));
         setDescription((String) data.get("description"));
+    }
+
+    public void task() {
+
     }
 
     public int getId() {
