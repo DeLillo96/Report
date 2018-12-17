@@ -23,6 +23,7 @@ public class RemoteManager {
         registry.rebind("customerContact", new CustomerContactServiceImplementation());
         registry.rebind("task", new TaskServiceImplementation());
         registry.rebind("projectTask", new ProjectTaskServiceImplementation());
+        registry.rebind("report", new ReportServiceImplementation());
     }
 
     public int getPort() {

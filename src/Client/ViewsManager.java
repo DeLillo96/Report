@@ -1,9 +1,7 @@
 package Client;
 
-import Client.Controller.AbstractNotifyController;
-import Client.Controller.ModifyUserController;
-import Client.Controller.SetRolesController;
-import Client.Controller.SetTasksController;
+import Client.Controller.*;
+import Client.Model.CalendarDay;
 import Client.Model.Employee;
 import Client.Model.Project;
 import javafx.fxml.FXMLLoader;
@@ -100,7 +98,18 @@ public class ViewsManager {
             modifyUserController.setUser(user);
         } catch (IOException e) {
             notifyError(e.getMessage());
-            e.printStackTrace();
+        }
+    }
+
+    public void renderReportPopup(CalendarDay calendarDay) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/reportForm.fxml"));
+            addPopup(loader.load());
+
+            ReportFormController reportFormController = loader.getController();
+            reportFormController.setCalendar(calendarDay);
+        } catch (IOException e) {
+            notifyError(e.getMessage());
         }
     }
 

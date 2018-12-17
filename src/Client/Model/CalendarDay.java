@@ -1,10 +1,18 @@
 package Client.Model;
 
 import Client.Controller.CalendarController;
+import Client.RemoteManager;
+import Client.ViewsManager;
+import Shared.BaseService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import org.json.simple.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CalendarDay {
@@ -23,6 +31,7 @@ public class CalendarDay {
         setContainer(new VBox());
         container.setAlignment(Pos.CENTER);
         container.getStyleClass().add("calendar-box");
+        events();
     }
 
     /**
@@ -49,6 +58,62 @@ public class CalendarDay {
         container.getStyleClass().add("today-box");
     }
 
+    /**
+     * Method used to set listeners and related events to trigger
+     */
+    public void events() {
+        container.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> openPopup());
+    }
+
+    /**
+     * Method used to render a calendar day popup referred to actual clicked calendar cell
+     */
+    public void openPopup() {
+        JSONObject filters = new JSONObject();
+        JSONObject result = new JSONObject();
+        JSONObject data;
+        JSONObject dataCreateParams = new JSONObject();
+        String actualDateString = controller.dateStringConstructor(day);
+        if (getDay() != 0) {
+            if (calendarId == null) {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date calendarDay = dateFormat.parse(actualDateString);
+                    filters.put("date", calendarDay);
+                } catch (Exception e) {
+                    ViewsManager.getInstance().notifyError("Invalid dates (Required format: yyyy-MM-dd");
+                }
+                try {
+                    result = controller.getCalendarServices().read(filters);
+                } catch (Exception e) {
+                    ViewsManager.getInstance().notifyError("Communication error (Can't call calendar services)");
+                }
+                if ((result != null) && (result.size()>0) && ((boolean) result.get("success")) && !(((JSONObject) result.get("data")).isEmpty() )) {
+                    data = (JSONObject) result.get("data");
+                    for (int i = 0; i < data.size(); i++) {
+                        JSONObject singleJsonDay = (JSONObject) data.get(i);
+                        if (actualDateString.equals(singleJsonDay.get("date"))) {
+                            this.setCalendarId(Integer.parseInt((String) singleJsonDay.get("id")));
+                            break;
+                        }
+                    }
+                } else {
+                    dataCreateParams.put("date", actualDateString);
+                    try {
+                        result = controller.getCalendarServices().save(dataCreateParams);
+                    } catch (Exception e) {
+                        ViewsManager.getInstance().notifyError("Communication error: (Can't call calendar services)");
+                    }
+                    if ((boolean) result.get("success")) {
+                        data = (JSONObject) ((JSONObject) result.get("data")).get(0);
+                        calendarId = Integer.parseInt((String) data.get("id"));
+                    }
+                }
+            }
+            ViewsManager.getInstance().renderReportPopup(this);
+        }
+    }
+
     public Integer getDay() {
         return day;
     }
@@ -63,6 +128,30 @@ public class CalendarDay {
         Label lbl = new Label(day.toString());
         lbl.setPadding(new Insets(5));
         this.container.getChildren().add(lbl);
+
+        addViewReport();
+    }
+
+    private void addViewReport() {
+        try {
+            JSONObject filters = new JSONObject();
+            filters.put("calendar_id", calendarId);
+            BaseService service = RemoteManager.getInstance().getReportService();
+            JSONObject response = service.read(filters);
+
+            JSONObject data = (JSONObject) response.get("data");
+            for (int i = 0; i < data.size(); i++) {
+                JSONObject report = (JSONObject) data.get(i);
+                JSONObject employee = (JSONObject) report.get("employee");
+                JSONObject user = (JSONObject) employee.get("user");
+
+                Label label = new Label((String) user.get("username"));
+                label.getStyleClass().add("calendar-label");
+                container.getChildren().add(label);
+            }
+        } catch (Exception ignored){
+
+        }
     }
 
     public Integer getCalendarId() {

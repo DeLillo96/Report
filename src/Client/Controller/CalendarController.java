@@ -90,9 +90,9 @@ public class CalendarController {
             ViewsManager.getInstance().notifyError("Server communication error");
         }
 
-        if((result!=null) && ((boolean) result.get("success"))) {
+        if((result != null) && ((boolean) result.get("success"))) {
             data = (JSONObject) result.get("data");
-            if(!data.isEmpty()) foundCalendars=true;
+            if(!data.isEmpty()) foundCalendars = true;
         }
 
 

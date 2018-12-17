@@ -55,4 +55,8 @@ public class RemoteManager {
     public RelationService getProjectTaskService() throws Exception {
         return (RelationService) registry.lookup("projectTask");
     }
+
+    public BaseService getReportService() throws Exception {
+        return (BaseService) registry.lookup("report");
+    }
 }
