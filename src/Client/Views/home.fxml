@@ -11,6 +11,7 @@
              AnchorPane.topAnchor="0.0">
         <Tab fx:id="homeTab" closable="false" text="Home"/>
         <Tab fx:id="projectsTab" closable="false" text="Projects"/>
+        <Tab fx:id="customerTab" closable="false" text="Customers"/>
         <Tab fx:id="employeeTab" closable="false" text="Employee"/>
         <Tab fx:id="rolesTab" closable="false" text="Roles"/>
     </TabPane>

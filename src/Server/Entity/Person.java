@@ -39,10 +39,6 @@ public abstract class Person extends AbstractEntity {
     @Column(unique = true, length = 10)
     private String telephone;
 
-    /*
-    @ManyToMany(mappedBy = "persons", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    private Set<Location> locations = new HashSet<>();
-    */
     public Person() {
         this("", "", "", "");
     }

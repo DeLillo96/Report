@@ -65,7 +65,6 @@
                         <Label text="Save">
                            <styleClass>
                               <String fx:value="label" />
-                              <String fx:value="lab" />
                            </styleClass>
                         </Label>
                               <Button fx:id="saveButton" alignment="CENTER" onAction="#save">

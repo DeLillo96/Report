@@ -15,7 +15,7 @@ import javax.persistence.Table;
         @Filter(name = "id", condition = "id = :id"),
         @Filter(name = "code", condition = "code like '%' || :code || '%'"),
 })
-@Table(name = "Project")
+@Table(name = "Customer")
 public class Customer extends AbstractEntity {
 
     @Id
