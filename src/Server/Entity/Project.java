@@ -43,7 +43,7 @@ public class Project extends AbstractEntity {
     private Date expire;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer")
     private Customer customer;
 
     @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)

@@ -6,7 +6,6 @@ import org.hibernate.annotations.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.Table;
 
 @Entity
 @FilterDefs({
@@ -17,7 +16,6 @@ import javax.persistence.Table;
         @Filter(name = "user_id", condition = "user_id = :user_id"),
         @Filter(name = "role_id", condition = "role_id = :role_id"),
 })
-@Table(name = "Employee")
 public class Employee extends Person {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)

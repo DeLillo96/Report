@@ -5,7 +5,6 @@ import org.hibernate.annotations.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.*;
-import javax.persistence.Table;
 
 @Entity
 @FilterDefs({
@@ -14,7 +13,6 @@ import javax.persistence.Table;
 @Filters({
         @Filter(name = "customer_id", condition = "customer_id = :customer_id"),
 })
-@Table(name = "CustomerContact")
 public class CustomerContact extends Person {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)

@@ -101,6 +101,20 @@ public class ViewsManager {
         }
     }
 
+    public void renderSetCustomer(Project project) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/setCustomer.fxml"));
+            addPopup(loader.load());
+
+            SetCustomerController setCustomerController = loader.getController();
+            setCustomerController.setProject(project);
+
+            setCustomerController.filter();
+        } catch (IOException e) {
+            notifyError(e.getMessage());
+        }
+    }
+
     public void renderReportPopup(CalendarDay calendarDay) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/reportForm.fxml"));
