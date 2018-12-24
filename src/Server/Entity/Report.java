@@ -49,6 +49,15 @@ public class Report extends AbstractEntity {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "task_id")
+    private Task task;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+
     public Report() {
         this("", "", 0, new Calendar());
     }

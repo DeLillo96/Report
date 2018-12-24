@@ -1,9 +1,7 @@
 package Client;
 
 import Client.Controller.*;
-import Client.Model.CalendarDay;
-import Client.Model.Employee;
-import Client.Model.Project;
+import Client.Model.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -89,6 +87,9 @@ public class ViewsManager {
         }
     }
 
+    public void renderSetTasks(Report report) {
+    }
+
     public void renderModifyUser(Employee employee, JSONObject user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/modifyUser.fxml"));
@@ -115,16 +116,22 @@ public class ViewsManager {
         }
     }
 
+    public void renderSetCustomer(Report report) {
+    }
+
     public void renderReportPopup(CalendarDay calendarDay) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/reportForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/report.fxml"));
             addPopup(loader.load());
 
-            ReportFormController reportFormController = loader.getController();
-            reportFormController.setCalendar(calendarDay);
+            ReportController reportController = loader.getController();
+            reportController.setCalendar(calendarDay);
         } catch (IOException e) {
             notifyError(e.getMessage());
         }
+    }
+
+    public void renderSetProject(Report report) {
     }
 
     /**
