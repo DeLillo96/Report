@@ -21,6 +21,9 @@ public class SetRole extends AbstractRowModel {
     }
 
     @Override
+    protected void initializeButtons() {}
+
+    @Override
     protected void refreshModel() {
         setName((String) data.get("name"));
         setDescription((String) data.get("description"));

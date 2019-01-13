@@ -20,6 +20,9 @@ public class SetCustomer extends AbstractRowModel {
     }
 
     @Override
+    protected void initializeButtons() {}
+
+    @Override
     protected void refreshModel() {
         setCode((String) data.get("code"));
     }
