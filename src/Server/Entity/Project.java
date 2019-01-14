@@ -16,14 +16,16 @@ import java.util.Set;
         @FilterDef(name = "code", parameters = @ParamDef(name = "code", type = "string")),
         @FilterDef(name = "description", parameters = @ParamDef(name = "description", type = "string")),
         @FilterDef(name = "expireFrom", parameters = {@ParamDef(name = "expireFrom", type = "date")}),
-        @FilterDef(name = "expireTo", parameters = {@ParamDef(name = "expireTo", type = "date")})
+        @FilterDef(name = "expireTo", parameters = {@ParamDef(name = "expireTo", type = "date")}),
+        @FilterDef(name = "customer", parameters = {@ParamDef(name = "customer", type = "integer")}),
 })
 @Filters({
         @Filter(name = "id", condition = "id = :id"),
         @Filter(name = "code", condition = "code like '%' || :code || '%'"),
         @Filter(name = "description", condition = "description like '%' || :description || '%'"),
         @Filter(name = "expireFrom", condition = "expire >= :expireFrom"),
-        @Filter(name = "expireTo", condition = "expire <= :expireTo")
+        @Filter(name = "expireTo", condition = "expire <= :expireTo"),
+        @Filter(name = "customer", condition = "customer = :customer")
 })
 @Table(name = "Project")
 public class Project extends AbstractEntity {

@@ -134,6 +134,19 @@ public class ViewsManager {
     public void renderSetProject(Report report) {
     }
 
+    public void renderReportForm(Report report) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/reportForm.fxml"));
+            addPopup(loader.load());
+
+            ReportFormController reportFormController = loader.getController();
+            reportFormController.setReport(report);
+            reportFormController.render();
+        } catch (IOException e) {
+            notifyError(e.getMessage());
+        }
+    }
+
     /**
      * Add a popup to a generic stack
      * @param parent (Base of the client's view)

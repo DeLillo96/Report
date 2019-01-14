@@ -13,10 +13,6 @@ public class Report extends AbstractRowModel {
     private TextField quantity = new TextField();
     private TextArea note = new TextArea();
 
-    private Button setCustomer = new Button();
-    private Button setProject = new Button();
-    private Button setTask = new Button();
-
     public Report(AbstractTableController tableController) throws Exception {
         this(tableController, new JSONObject());
     }
@@ -25,35 +21,10 @@ public class Report extends AbstractRowModel {
         super(RemoteManager.getInstance().getReportService(), tableController, data);
 
         note.setMaxHeight(50);
+        note.setPrefHeight(50);
+        note.setMinHeight(50);
         refreshModel();
         events();
-    }
-
-    @Override
-    protected void initializeButtons() {
-        super.initializeButtons();
-
-        setCustomer = new Button();
-        defineImageButton(setCustomer, "Client/Resources/Images/customer.png");
-        setCustomer.setOnAction(actionEvent -> setCustomer());
-        setCustomer.setTooltip(new Tooltip("Set Customer"));
-        
-        setProject = new Button();
-        defineImageButton(setProject, "Client/Resources/Images/add-project.png");
-        setProject.setOnAction(actionEvent -> setProject());
-        setProject.setTooltip(new Tooltip("Set Project"));
-        
-        setTask = new Button();
-        defineImageButton(setTask, "Client/Resources/Images/task.png");
-        setTask.setOnAction(actionEvent -> setTask());
-        setTask.setTooltip(new Tooltip("Set Task"));
-
-        if (data.size() == 0) {
-            setCustomer.setVisible(false);
-            setProject.setVisible(false);
-            setTask.setVisible(false);
-        }
-        getButtons().getChildren().addAll(setCustomer, setProject, setTask);
     }
 
     public void events() {
@@ -109,6 +80,11 @@ public class Report extends AbstractRowModel {
     public void setCustomer(String customer) {
         this.customer.setText(customer);
     }
+    
+    public void setCustomer(JSONObject customer) {
+        this.customer.setText((String) customer.get("code"));
+        this.data.put("customer", customer);
+    }
 
     public Label getProject() {
         return project;
@@ -122,6 +98,11 @@ public class Report extends AbstractRowModel {
         this.project.setText(project);
     }
 
+    public void setProject(JSONObject project) {
+        this.project.setText((String) project.get("code"));
+        this.data.put("project", project);
+    }
+
     public Label getTask() {
         return task;
     }
@@ -132,6 +113,11 @@ public class Report extends AbstractRowModel {
 
     public void setTask(String task) {
         this.task.setText(task);
+    }
+    
+    public void setTask(JSONObject task) {
+        this.task.setText((String) task.get("description"));
+        this.data.put("task", task);
     }
 
     public TextField getQuantity() {

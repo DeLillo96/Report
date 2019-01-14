@@ -18,7 +18,7 @@ import javax.persistence.Table;
         @Filter(name = "id", condition = "id = :id"),
         @Filter(name = "note", condition = "note like '%' || :note || '%'"),
         @Filter(name = "customerNote", condition = "customerNote like '%' || :customerNote || '%'"),
-        @Filter(name = "calendar_id", condition = "calendar_id = :calendar_id"),
+        @Filter(name = "calendar", condition = "calendar = :calendar"),
 })
 @Table(name = "Report")
 public class Report extends AbstractEntity {
@@ -38,23 +38,23 @@ public class Report extends AbstractEntity {
     private Integer quantity;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "calendar_id")
+    @JoinColumn(name = "calendar")
     private Calendar calendar;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee")
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "project_id")
+    @JoinColumn(name = "project")
     private Project project;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "task")
     private Task task;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer")
     private Customer customer;
 
 
@@ -123,6 +123,22 @@ public class Report extends AbstractEntity {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }
 

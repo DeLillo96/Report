@@ -28,7 +28,13 @@ public class ReportController extends AbstractTableController {
      */
     @FXML
     public void add() throws Exception {
-        addIntoTable(new Report(this));
+        JSONObject data = new JSONObject();
+
+        data.put("calendar", calendar.getData());
+
+        Report report = new Report(this, data);
+        addIntoTable(report);
+        ViewsManager.getInstance().renderReportForm(report);
     }
 
     @Override

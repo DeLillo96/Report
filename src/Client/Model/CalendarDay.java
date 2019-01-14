@@ -135,7 +135,7 @@ public class CalendarDay {
     private void addViewReport() {
         try {
             JSONObject filters = new JSONObject();
-            filters.put("calendar_id", calendarId);
+            filters.put("calendar", calendarId);
             BaseService service = RemoteManager.getInstance().getReportService();
             JSONObject response = service.read(filters);
 
@@ -188,5 +188,12 @@ public class CalendarDay {
 
     public void setController(CalendarController controller) {
         this.controller = controller;
+    }
+
+    public JSONObject getData(){
+        JSONObject data = new JSONObject();
+        data.put("id", calendarId);
+
+        return data;
     }
 }

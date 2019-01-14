@@ -22,7 +22,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 @Table(name = "Task")
-public abstract class Task extends AbstractEntity {
+public class Task extends AbstractEntity {
 
     @Id
     @GeneratedValue
