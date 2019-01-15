@@ -135,7 +135,7 @@ public class CalendarDay {
     private void addViewReport() {
         try {
             JSONObject filters = new JSONObject();
-            filters.put("calendar", calendarId);
+            if (calendarId > 0) filters.put("calendar", calendarId);
             BaseService service = RemoteManager.getInstance().getReportService();
             JSONObject response = service.read(filters);
 

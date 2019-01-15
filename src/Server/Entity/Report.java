@@ -12,7 +12,7 @@ import javax.persistence.Table;
         @FilterDef(name = "id", parameters = @ParamDef(name = "id", type = "integer")),
         @FilterDef(name = "note", parameters = @ParamDef(name = "note", type = "string")),
         @FilterDef(name = "customerNote", parameters = @ParamDef(name = "customerNote", type = "string")),
-        @FilterDef(name = "calendar_id", parameters = @ParamDef(name = "calendar_id", type = "integer")),
+        @FilterDef(name = "calendar", parameters = @ParamDef(name = "calendar", type = "integer")),
 })
 @Filters({
         @Filter(name = "id", condition = "id = :id"),
