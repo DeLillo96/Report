@@ -30,9 +30,6 @@ public class SetTasks extends AbstractRowModel {
         events();
     }
 
-    @Override
-    protected void initializeButtons() {}
-
     /**
      * Method used to set listeners and related events to trigger
      */
