@@ -140,18 +140,23 @@ public class CalendarDay {
             JSONObject response = service.read(filters);
 
             JSONObject data = (JSONObject) response.get("data");
-            for (int i = 0; i < data.size(); i++) {
-                JSONObject report = (JSONObject) data.get(i);
-                JSONObject employee = (JSONObject) report.get("employee");
-                JSONObject user = (JSONObject) employee.get("user");
+            if (data.size() > 0) {
+                for (int i = 0; i < data.size(); i++) {
+                    JSONObject report = (JSONObject) data.get(i);
+                    JSONObject employee = (JSONObject) report.get("employee");
+                    JSONObject user = (JSONObject) employee.get("user");
+                    JSONObject task = (JSONObject) report.get("task");
 
-                Label label = new Label((String) user.get("username"));
-                label.getStyleClass().add("calendar-label");
-                container.getChildren().add(label);
+                    String labelText = String.format("%s - %s", user.get("username"), task.get("description"));
+
+                    if (i == 4 && data.size() > 4) {
+                        addCalendarLabel("...");
+                        break;
+                    }
+                    addCalendarLabel(labelText);
+                }
             }
-        } catch (Exception ignored){
-
-        }
+        } catch (Exception ignored){}
     }
 
     public Integer getCalendarId() {
@@ -195,5 +200,11 @@ public class CalendarDay {
         data.put("id", calendarId);
 
         return data;
+    }
+
+    public void addCalendarLabel(String text) {
+        Label label = new Label(text);
+        label.getStyleClass().add("calendar-label");
+        container.getChildren().add(label);
     }
 }
