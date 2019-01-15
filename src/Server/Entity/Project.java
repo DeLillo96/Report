@@ -57,7 +57,7 @@ public class Project extends AbstractEntity {
     private Set<Task> tasks = new HashSet<>();
 
     public Project() {
-        this("", "", new Date(), new Customer());
+        this("", "", new Date(), null);
     }
 
     public Project(String code, String description, Date expire, Customer customer) {
