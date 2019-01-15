@@ -41,6 +41,13 @@ public class ReportController extends AbstractTableController {
     protected JSONObject takeFilters() {
         JSONObject filters = new JSONObject();
 
+        if (calendar != null) {
+            Integer calendarId = calendar.getCalendarId();
+            if (calendarId > 0) {
+                filters.put("calendar", calendarId);
+            }
+        }
+
         return filters;
     }
 

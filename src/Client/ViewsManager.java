@@ -126,6 +126,8 @@ public class ViewsManager {
 
             ReportController reportController = loader.getController();
             reportController.setCalendar(calendarDay);
+
+            reportController.filter();
         } catch (IOException e) {
             notifyError(e.getMessage());
         }
