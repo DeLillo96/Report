@@ -27,13 +27,16 @@ public class Login {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
-            RemoteManager remoteManager = RemoteManager.getInstance();
-            UserService userService = remoteManager.getUserService();
+            UserService userService = RemoteManager.getInstance().getUserService();
             JSONObject response = userService.login(username, password);
 
             if ((boolean) response.get("success")) {
-                JSONObject role = (JSONObject) ((JSONObject) response.get("data")).get("role");
-                if(null != role) ControllerManager.getInstance().setRole((Integer) role.get("id"));
+                JSONObject loggedEmployee = (JSONObject) ((JSONObject) response.get("data")).get(0);
+                ControllerManager.getInstance().setEmployee(Integer.parseInt((String) loggedEmployee.get("id")));
+
+                JSONObject role = (JSONObject) loggedEmployee.get("role");
+                if(null != role) ControllerManager.getInstance().setRole(Integer.parseInt((String) role.get("id")));
+
                 ViewsManager.getInstance().renderHome();
             } else throw new Exception(response.get("messages").toString());
         } catch (Exception e) {

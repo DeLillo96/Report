@@ -1,6 +1,7 @@
 package Client.Model;
 
 import Client.Controller.AbstractTableController;
+import Client.ControllerManager;
 import Client.RemoteManager;
 import Client.ViewsManager;
 import javafx.scene.control.*;
@@ -48,6 +49,11 @@ public class Report extends AbstractRowModel {
         }
         if (null != data.get("task")) {
             setTask((String) ((JSONObject) data.get("task")).get("description"));
+        }
+        if (null == data.get("employee")) {
+            JSONObject employee = new JSONObject();
+            employee.put("id", ControllerManager.getInstance().getEmployeeId());
+            data.put("employee", employee);
         }
         setQuantity((String) data.get("quantity"));
         setNote((String) data.get("note"));

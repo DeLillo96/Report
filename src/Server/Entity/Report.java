@@ -59,7 +59,7 @@ public class Report extends AbstractEntity {
 
 
     public Report() {
-        this("", "", 0, new Calendar());
+        this("", "", 0, null);
     }
 
     public Report(String note, String customerNote, Integer quantity, Calendar calendar) {
