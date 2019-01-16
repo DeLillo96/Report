@@ -18,7 +18,7 @@ public class SessionManager {
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         } catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy(registry);
+            destroySessionFactory();
             e.printStackTrace();
         }
     }

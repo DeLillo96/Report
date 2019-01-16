@@ -55,4 +55,12 @@ public class Customer extends AbstractEntity {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
+    }
 }
