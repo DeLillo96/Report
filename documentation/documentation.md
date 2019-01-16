@@ -12,32 +12,32 @@
     3.3 PostgreSQL  
     3.4 json-simple  
     3.5 Jackson
-4. Server
-    4.1 Result
-    4.2 SessionManager
-    4.3 Entities
-        4.3.1 Design Pattern
-        4.3.2 AbstractEntity
-        4.3.3 Attributes
-        4.3.4 Relations
-        4.3.5 Filters
-        4.3.6 Inheritance
-    4.4 Repository
-    4.5 Remote
-    4.6 Test
-5. Client
-    5.1 Managers
-        5.1.1 ControllerManager
-        5.1.2 RemoteManager
-        5.1.3 ViewsManager
-    5.2 Views
-    5.3 Controllers
-        5.3.1 TableController
-        5.3.2 CalendarController
-    5.4 Models
-        5.4.1 RowModel
-        5.4.2 CalendarDay
-6. Usage ???
+4. Server  
+    4.1 Result  
+    4.2 SessionManager  
+    4.3 Entities  
+        4.3.1 Design Pattern  
+        4.3.2 AbstractEntity  
+        4.3.3 Attributes  
+        4.3.4 Relations  
+        4.3.5 Filters  
+        4.3.6 Inheritance  
+    4.4 Repository  
+    4.5 Remote  
+    4.6 Test  
+5. Client  
+    5.1 Managers  
+        5.1.1 ControllerManager  
+        5.1.2 RemoteManager  
+        5.1.3 ViewsManager  
+    5.2 Views  
+    5.3 Controllers  
+        5.3.1 TableController  
+        5.3.2 CalendarController  
+    5.4 Models  
+        5.4.1 RowModel  
+        5.4.2 CalendarDay  
+6. Usage ???  
 ---
 # 1 Technology #  
 ## 1.1 Languages ##  
@@ -62,13 +62,10 @@ that allow the management of data persistence on a relational database, Postgres
 ---
 # 3 Maven #
 ## 3.1 JUnit Jupiter ##
-![Icon](resurces/images/junit.png)  
 **JUnit** is used for unit tests, very convenient for the @BeforeAll and @AfterAll functions in order to prepare and clean the database before and after the relative tests.
 ## 3.2 Hibernate ##
-![Icon](resurces/images/hibernate.png)  
 **Hibernate** is a distributed framework that provides ORM services that allow the management of the persistence of data on the database itself through the representation and maintenance of a Java object system (called Entity) on a relational database.
 ## 3.3 PostgreSQL ##
-![Icon](resurces/images/postgresql.png)  
 **PostgreSQL** in this case is only the driver that interfaces the physical database to java, and is used only by **Hibernate**.
 ## 3.4 json-simple ##
 **json-simple** is a library that is used for parsing classes in json and vice versa for sending data from server to client and vice versa.
