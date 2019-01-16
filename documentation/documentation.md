@@ -1,5 +1,5 @@
 # Index #
-1. Technology  
+1. [Technology](#technology)  
     1.1 Languages  
     1.2 Framework and Libraries  
     1.2 Tools
@@ -39,7 +39,7 @@
         5.4.2 CalendarDay  
 6. Usage ???  
 ---
-# 1 Technology #  
+# 1 Technology #  <a name="technology"></a>
 ## 1.1 Languages ##  
 - Java  
 - HQL  
