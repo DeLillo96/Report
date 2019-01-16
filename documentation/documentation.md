@@ -15,7 +15,7 @@
 4. [Server](#Server)  
     4.1 [Result](#Result)  
     4.2 [SessionManager](#SessionManager)  
-    4.3 [Entities](#Entities)  
+    4.3 [Entities](#43-entity)  
         4.3.1 [Design Pattern](#DesignPattern)  
         4.3.2 [AbstractEntity](#AbstractEntity)  
         4.3.3 [Attributes](#Attributes)  
