@@ -1,115 +1,94 @@
 # Index #
-1. [Technology](#Technology)  
-    1.1 [Languages](#Languages)  
-    1.2 [Framework and Libraries](#FrameworkLibraries)  
-    1.3 [Tools](#Tools)
-2. [Data](#Data)  
-    2.1 [Management](#Management)  
-    2.2 [ER Diagram](#ERDiagram)  
-3. [Maven](#Maven)  
-    3.1 [JUnit Jupiter](#JUnitJupiter)  
-    3.2 [Hibernate](#Hibernate)  
-    3.3 [PostgreSQL](#PostgreSQL)  
-    3.4 [json-simple](#json-simple)  
-    3.5 [Jackson](#Jackson)
-4. [Server](#Server)  
-    4.1 [Result](#Result)  
-    4.2 [SessionManager](#SessionManager)  
+1. [Technology](#1-technology)  
+    1.1 [Languages](#11-languages)  
+    1.2 [Framework and Libraries](#12-framework-and-libraries)  
+    1.3 [Tools](#13-tools)
+2. [Data](#2-data)  
+    2.1 [Management](#21-management)  
+    2.2 [ER Diagram](#22-er-diagram)  
+3. [Maven](#3-maven)  
+    3.1 [JUnit Jupiter](#31-junit-jupiter)  
+    3.2 [Hibernate](#32-hibernate)  
+    3.3 [PostgreSQL](#33-postgresql)  
+    3.4 [json-simple](#34-json-simple)  
+    3.5 [Jackson](#35-jackson)
+4. [Server](#4-server)  
+    4.1 [Result](#41-result)  
+    4.2 [SessionManager](#42-sessionmanager)  
     4.3 [Entities](#43-entity)  
-        4.3.1 [Design Pattern](#DesignPattern)  
-        4.3.2 [AbstractEntity](#AbstractEntity)  
-        4.3.3 [Attributes](#Attributes)  
-        4.3.4 [Relations](#Relations)  
-        4.3.5 [Filters](#Filters)  
-        4.3.6 [Inheritance](#Inheritance)  
-    4.4 [Repository](#Repository)  
-    4.5 [Remote](#Remote)  
-    4.6 [Test](#Test)  
-5. [Client](#Client)  
-    5.1 [Managers](#Managers)  
-        5.1.1 [ControllerManager](#ControllerManager)  
-        5.1.2 [RemoteManager](#RemoteManager)  
-        5.1.3 [ViewsManager](#ViewsManager)  
-    5.2 [Views](#Views)  
-    5.3 [Controllers](#Controllers)  
-        5.3.1 [TableController](#TableController)  
-        5.3.2 [CalendarController](#CalendarController)  
-    5.4 [Models](#Models)  
-        5.4.1 [RowModel](#RowModel)  
-        5.4.2 [CalendarDay](#CalendarDay)  
-6. [Usage](#Usage) ???  
+        4.3.1 [Design Pattern](#431-design-pattern)  
+        4.3.2 [AbstractEntity](#432-abstractentity)  
+        4.3.3 [Attributes](#433-attributes)  
+        4.3.4 [Relations](#434-relations)  
+        4.3.5 [Filters](#435-filters)  
+        4.3.6 [Inheritance](#436-inheritance)  
+    4.4 [Repository](#)  
+    4.5 [Remote](#)  
+    4.6 [Test](#)  
+5. [Client](#)  
+    5.1 [Managers](#)  
+        5.1.1 [ControllerManager](#)  
+        5.1.2 [RemoteManager](#)  
+        5.1.3 [ViewsManager](#)  
+    5.2 [Views](#)  
+    5.3 [Controllers](#)  
+        5.3.1 [TableController](#)  
+        5.3.2 [CalendarController](#)  
+    5.4 [Models](#)  
+        5.4.1 [RowModel](#)  
+        5.4.2 [CalendarDay](#)  
+6. [Usage](#) ???  
 ---
-<a name="Technology"></a>  
 # 1 Technology #
-<a name="Languages"></a>  
 ## 1.1 Languages ##  
 - Java  
 - HQL  
 - XML  
 - CSS  
-<a name="FrameworkLibraries"></a>  
 ## 1.2 Framework and Libraries ##  
 For the list of library and framework dependencies, look at the `pom.xml` file, managed by Maven.
-<a name="Tools"></a>  
 ## 1.3 Tools ##  
 - Docker  
 - Postgres  
 - Maven
 ---
-<a name="Data"></a>  
 # 2 Data #
-<a name="Management"></a>  
 ## 2.1 Management ##  
 For the creation of the database was used Hibernate, a distributed framework that provides ORM services, 
 that allow the management of data persistence on a relational database, Postgres in this case.   
-<a name="ERDiagram"></a>  
 ## 2.2 ER Diagram ##  
 ![Diagram](resurces/images/er.jpg)  
 
 ---
-<a name="Maven"></a>  
 # 3 Maven #
-<a name="JUnitJupiter"></a>  
 ## 3.1 JUnit Jupiter ##
 **JUnit** is used for unit tests, very convenient for the @BeforeAll and @AfterAll functions in order to prepare and clean the database before and after the relative tests.
-<a name="Hibernate"></a>  
 ## 3.2 Hibernate ##
 **Hibernate** is a distributed framework that provides ORM services that allow the management of the persistence of data on the database itself through the representation and maintenance of a Java object system (called Entity) on a relational database.
-<a name="PostgreSQL"></a>  
 ## 3.3 PostgreSQL ##
 **PostgreSQL** in this case is only the driver that interfaces the physical database to java, and is used only by **Hibernate**.
-<a name="json-simple"></a>  
 ## 3.4 json-simple ##
 **json-simple** is a library that is used for parsing classes in json and vice versa for sending data from server to client and vice versa.
-<a name="Jackson"></a>  
 ## 3.5 Jackson ##
 **Jackson-mapper** is a library that is used to transform a data in JSON format into a class.
 
 ---
-<a name="Server"></a>  
 # 4 Server #
-<a name="Result"></a>  
 ## 4.1 Result ##
 This class is used to communicate DB operations' results.
 Contains the result (true or false), a list of messages linked to the result and a list of data used in operations if needed.
 Is very useful for its function that transforms the data it contains into a readable JSON object.
-<a name="SessionManager"></a>  
 ## 4.2 SessionManager ##
 Singleton class, it is used to always have the hibernate session available to every entity for database operations.
-<a name="Entity"></a>  
 ## 4.3 Entity ##
-<a name="DesignPattern"></a>  
 ### 4.3.1 Design Pattern ###
 ![Icon](resurces/images/entitiesPattern.png)
-<a name="AbstractEntity"></a>  
 ### 4.3.2 AbstractEntity ###
 The class implements the interface's save and delete methods. 
 Entities have methods of creating, updating and deleting from CRUD methods.
 This class also has the methods of before and after the save and delete operations for modeling the data if necessary.
-<a name="Attributes"></a>  
 ### 4.3.3 Attributes ###
 Each class that extends the AbstractEntity will have attributes that are correlated by Hibernate to the columns of the database table which the class is connected.
-<a name="Relations"></a>  
 ### 4.3.4 Relations ###
 They are attributes of type entity, so as to simulate the relation in the database also between the classes.
 You can also specify cascadeType to perform the elimination of relation.
@@ -155,7 +134,6 @@ Example class Task:
     private Set<Project> projects = new HashSet<>();
 ```
  
-<a name="Filters"></a>  
 ### 4.3.5 Filters ###
 The filters are written in the entities because they have the interface with the database, but the Read operations are implemented by the Repositories.  
 Example class Person:
@@ -177,7 +155,6 @@ Example class Person:
         @Filter(name = "customer", condition = "customer = :customer")
 })
 ```
-<a name="Inheritance"></a>  
 ### 4.3.6 Inheritance ###
 Inheritance is an important feature of Generalization and Specialization. It allows lower-level entities to inherit the attributes of higher-level entities.  
 For example, the attributes of a Person class such as name, fiscal code, and telephone can be inherited by lower-level entities such as Employee or CustomerContact.
