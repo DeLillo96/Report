@@ -9,7 +9,6 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -50,26 +49,6 @@ public abstract class AbstractBaseService extends UnicastRemoteObject implements
     }
 
     @Override
-    public JSONObject saveAll(JSONObject jsonData) {
-        ArrayList<EntityInterface> data = new ArrayList<>();
-        Set keys = jsonData.keySet();
-        EntityInterface entity;
-
-        for (Object key : keys) {
-            try {
-                entity = castJsonIntoEntity((JSONObject) jsonData.get(key));
-                data.add(entity);
-            } catch (IOException e) {
-                Result result = new Result(e.getMessage(), false);
-                return result.toJson();
-            }
-        }
-
-        Result result = repository.save(data);
-        return result.toJson();
-    }
-
-    @Override
     public JSONObject delete(JSONObject data) {
         EntityInterface entity;
         try {
@@ -80,11 +59,6 @@ public abstract class AbstractBaseService extends UnicastRemoteObject implements
         }
         Result result = entity.delete();
         return result.toJson();
-    }
-
-    @Override
-    public JSONObject deleteAll(JSONObject data) {
-        return null;
     }
 
     protected HashMap<String, Object> prepareReadParameter(JSONObject parameters) {
