@@ -61,16 +61,6 @@ public abstract class AbstractTableController {
         } else throw new Exception("Read from server error");
     }
 
-    protected void notifyResult(JSONObject result) throws Exception {
-        if ((boolean) result.get("success")) {
-            ViewsManager.getInstance().notifySuccess(result.get("messages").toString());
-        } else {
-            String errorMessage = result.get("messages").toString();
-            throw new Exception(errorMessage);
-        }
-    }
-
-
     /**
      * Method used to generate a new tableView row
      * @param item (Specific type of row, different for every tableView)
