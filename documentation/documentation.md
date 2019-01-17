@@ -16,15 +16,20 @@
     4.1 [Result](#41-result)  
     4.2 [SessionManager](#42-sessionmanager)  
     4.3 [Entities](#43-entity)  
-        4.3.1 [Design Pattern](#431-design-pattern)  
+        4.3.1 [Class Diagram](#431-design-pattern)  
         4.3.2 [AbstractEntity](#432-abstractentity)  
         4.3.3 [Attributes](#433-attributes)  
         4.3.4 [Relations](#434-relations)  
         4.3.5 [Filters](#435-filters)  
         4.3.6 [Inheritance](#436-inheritance)  
-    4.4 [Repository](#)  
+    4.4 [Repository](#44-repository)  
+        4.4.1 [Class Diagram](#441-design-pattern)  
+        4.4.2 [AbstractRepository](#442-abstractrepository)  
+        4.4.3 [Extensions](#443-extensions)
     4.5 [Remote](#)  
-    4.6 [Test](#)  
+        4.5.1 [AbstractBaseService](#)  
+        4.5.2 [AbstractRelationService](#)  
+        4.5.3 [UserService](#)
 5. [Client](#)  
     5.1 [Managers](#)  
         5.1.1 [ControllerManager](#)  
@@ -81,7 +86,7 @@ Is very useful for its function that transforms the data it contains into a read
 ## 4.2 SessionManager ##
 Singleton class, it is used to always have the hibernate session available to every entity for database operations.
 ## 4.3 Entity ##
-### 4.3.1 Design Pattern ###
+### 4.3.1 Class Diagram ###
 ![Icon](resurces/images/entitiesPattern.png)
 ### 4.3.2 AbstractEntity ###
 The class implements the interface's save and delete methods. 
@@ -161,3 +166,23 @@ For example, the attributes of a Person class such as name, fiscal code, and tel
 Another example is in Task, which is differentiated by category Time or Cost.
 
 ---
+
+## 4.4 Repository ##
+### 4.4.1 Class Diagram ###
+![Icon](resurces/images/repositoryPattern.png)
+### 4.4.2 AbstractRepository ###
+The class implements the interface's read methods. 
+Repositories have methods of reading and searching from CRUD methods.
+There is the possibility with this class to use a custom query instead of the query fixed only to the table of interest (query language is not SQL but HQL).
+### 4.4.3 Extensions ###
+Each class that extends the abstract class must have the name of the table related, it is also possible to write some researches if necessary.  
+Example class UsersRepository:  
+```java
+public Users getUserByUsername(String username) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("username", username);
+    List users = read(params);
+
+    return users != null && users.size() == 1 ? (Users) users.get(0) : null;
+}
+```
