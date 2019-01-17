@@ -28,22 +28,22 @@
         4.4.3 [Extensions](#443-extensions)  
     4.5 [Remote](#45-remote)  
         4.5.1 [Class Diagram](#451-class-diagram)  
-        4.5.2 [AbstractBaseService](#)  
-        4.5.3 [UserService](#)  
-        4.5.4 [RemoteManager](#)
-5. [Client](#)  
-    5.1 [Managers](#)  
-        5.1.1 [ControllerManager](#)  
-        5.1.2 [RemoteManager](#)  
-        5.1.3 [ViewsManager](#)  
-    5.2 [Views](#)  
-    5.3 [Controllers](#)  
-        5.3.1 [TableController](#)  
-        5.3.2 [CalendarController](#)  
-    5.4 [Models](#)  
-        5.4.1 [RowModel](#)  
-        5.4.2 [CalendarDay](#)  
-6. [Usage](#) ???  
+        4.5.2 [BaseService](#452-baseservice)  
+        4.5.3 [RelationService](#453-relationservice)  
+        4.5.4 [UserService](#454-userservice)  
+    4.6 [RemoteManager](#46-remotemanager)
+5. [Client](#5-client)  
+    5.1 [Views](#51-views)  
+    5.2 [Controllers](#52-controllers)
+        5.2.1 [Class Diagram](#521-class-diagram)
+        5.2.2 [TableController](#522-tablecontroller)  
+    5.3 [Models](#53-models)  
+        5.3.1 [RowModel](#531-rowmodel)  
+    5.4 [Managers](#54-managers)  
+        5.4.1 [ControllerManager](#541-controllermanager)  
+        5.4.2 [RemoteManager](#542-remotemanager)  
+        5.4.3 [ViewsManager](#543-viewsmanager)  
+
 ---
 # 1 Technology #
 ## 1.1 Languages ##  
@@ -88,7 +88,7 @@ Is very useful for its function that transforms the data it contains into a read
 Singleton class, it is used to always have the hibernate session available to every entity for database operations.
 ## 4.3 Entity ##
 ### 4.3.1 Class Diagram ###
-![Icon](resurces/images/entitiesPattern.png)
+![Icon](resurces/images/entitiesPattern.png)  
 ### 4.3.2 AbstractEntity ###
 The class implements the interface's save and delete methods. 
 Entities have methods of creating, updating and deleting from CRUD methods.
@@ -166,8 +166,6 @@ Inheritance is an important feature of Generalization and Specialization. It all
 For example, the attributes of a Person class such as name, fiscal code, and telephone can be inherited by lower-level entities such as Employee or CustomerContact.
 Another example is in Task, which is differentiated by category Time or Cost.
 
----
-
 ## 4.4 Repository ##
 ### 4.4.1 Class Diagram ###
 ![Icon](resurces/images/repositoryPattern.png)  
@@ -191,3 +189,45 @@ public Users getUserByUsername(String username) {
 ## 4.5 Remote ##
 ### 4.5.1 Class Diagram ###
 ![Icon](resurces/images/remotePattern.png)  
+### 4.5.2 BaseService ###
+The BaseService is a class for communication between client and server, it receives data in json format and involves the repository, or the related entity for the various CRUD operations requested by the client.  
+### 4.5.3 RelationService ###
+The RelationService has the same principle as the BaseService but works only on readings, assignments and assignments of relation, not only on single tables.  
+### 4.5.4 UserService ###
+It is an extension of the base service, it is a special case because it implements the login and logout methods.  
+
+## 4.6 RemoteManager ##
+The RemoteManager is a class that initializes the implementations of the different services mentioned [above](#45-remote) and creates the bind between these objects and the RMI services.  
+This operation is done at the beginning of the server execution.  
+
+---
+# 5 Client #
+For the part of the GUI the Model View Controller Design Pattern was chosen.  
+Each controller will have access to the service made available by the server through the RMI protocol.  
+The Client has no logical part except the management of the GUI, everything is done inside the Server and the result is notified in the GUI itself.
+
+## 5.1 Views ##
+The views were built with the FXML format, in each view the controller is defined, which will manage events and objects GUI.  
+A default style has been applied to all views of the project, defined in the `default.css` file.  
+
+## 5.2 Controllers ##
+### 5.2.1 Class Diagram ###
+![Icon](resurces/images/controllerPattern.png)  
+### 5.2.2 TableController ###
+The tableController is a particular controller, a table is managed with its own filters and populated through the specified service.  
+Each implementation of the AbstractTableController must define the filters and the RowModel which manages the table row.  
+
+## 5.3 Models ##
+All the models in the project are of the RowModel type except for CalendarDay which manages the calendar cell.  
+### 5.3.1 RowModel ###
+The RowModel object is strictly related to its table, the raw data live within this model, so the Save and Delete methods are implemented by the RowModel and not in the TableController.  
+
+## 5.4 Managers ##
+### 5.4.1 ControllerManager ###
+It is a Singleton class used to have the IDs of the employee who has accessed the platform.  
+### 5.4.2 RemoteManager ###
+It is a Singleton class used to connect to the RMI services provided by the Server.  
+### 5.4.3 ViewsManager ###
+Is a singleton class used to manege, render Views, Popups and Notifications.  
+
+---
