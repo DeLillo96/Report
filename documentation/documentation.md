@@ -77,13 +77,13 @@ Follow the steps:
     - Postgres (https://www.postgresql.org/download/) then:
         1) Run the command `$sudo -u postgres psql` or just run the Postgres shell
         2) Run the following commands:  
-```sql
-CREATE DATABASE application;  
-CREATE USER admin WITH ENCRYPTED PASSWORD 'admin';  
-GRANT ALL PRIVILEGES ON DATABASE application TO admin;
-```
-    > Obviously the name of database "**application**", the user "**admin**" and the password "**admin**" can be changed.  
-    If you change them remember it, because Hibernate needs that information to work.
+            ```sql
+            CREATE DATABASE application;  
+            CREATE USER admin WITH ENCRYPTED PASSWORD 'admin';  
+            GRANT ALL PRIVILEGES ON DATABASE application TO admin;
+            ```
+            > Obviously the name of database "**application**", the user "**admin**" and the password "**admin**" can be changed.  
+            If you change them remember it, because Hibernate needs that information to work.
 3) Install Java SE (https://www.oracle.com/technetwork/java/javase/downloads) on the Client and Server machine, version 8 is required.
 4) On the Server run `Server.java`
     >if any of the database default data has been changed, remember to edit them in the `hibernate.cfg.xml` file.
