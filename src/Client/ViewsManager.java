@@ -87,9 +87,6 @@ public class ViewsManager {
         }
     }
 
-    public void renderSetTasks(Report report) {
-    }
-
     public void renderModifyUser(Employee employee, JSONObject user) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/modifyUser.fxml"));
@@ -116,9 +113,6 @@ public class ViewsManager {
         }
     }
 
-    public void renderSetCustomer(Report report) {
-    }
-
     public void renderReportPopup(CalendarDay calendarDay) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/report.fxml"));
@@ -133,7 +127,17 @@ public class ViewsManager {
         }
     }
 
-    public void renderSetProject(Report report) {
+    public void renderContactPopup(Customer customer) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/contact.fxml"));
+            addPopup(loader.load());
+
+            ContactController contactController = loader.getController();
+            contactController.setCustomer(customer);
+            contactController.filter();
+        } catch (IOException e) {
+            notifyError(e.getMessage());
+        }
     }
 
     public void renderReportForm(Report report) {

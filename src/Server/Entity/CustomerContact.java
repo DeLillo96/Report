@@ -8,15 +8,15 @@ import javax.persistence.*;
 
 @Entity
 @FilterDefs({
-        @FilterDef(name = "customer_id", parameters = {@ParamDef(name = "customer_id", type = "integer")}),
+        @FilterDef(name = "customer", parameters = {@ParamDef(name = "customer", type = "integer")}),
 })
 @Filters({
-        @Filter(name = "customer_id", condition = "customer_id = :customer_id"),
+        @Filter(name = "customer", condition = "customer = :customer"),
 })
 public class CustomerContact extends Person {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer")
     private Customer customer;
 
     public CustomerContact() {

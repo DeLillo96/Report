@@ -3,8 +3,9 @@ package Client.Model;
 import Client.Controller.AbstractTableController;
 import Client.ControllerManager;
 import Client.RemoteManager;
-import Client.ViewsManager;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import org.json.simple.JSONObject;
 
 public class Report extends AbstractRowModel {
@@ -57,18 +58,6 @@ public class Report extends AbstractRowModel {
         }
         setQuantity((String) data.get("quantity"));
         setNote((String) data.get("note"));
-    }
-
-    public void setCustomer() {
-        ViewsManager.getInstance().renderSetCustomer(this);
-    }
-
-    public void setProject() {
-        ViewsManager.getInstance().renderSetProject(this);
-    }
-
-    public void setTask() {
-        ViewsManager.getInstance().renderSetTasks(this);
     }
 
     public int getId() {
