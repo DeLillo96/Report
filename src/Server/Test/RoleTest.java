@@ -1,7 +1,6 @@
 package Server.Test;
 
 import Server.Entity.Role;
-import Server.Entity.Users;
 import Server.Repository.RoleRepository;
 import Server.Result;
 import org.junit.jupiter.api.AfterAll;
@@ -11,20 +10,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RoleTest {
-    private static String description = "Wife of King Renly Baratheon";
+    private static String description = "Protector of the people";
     private static RoleRepository roleRepository = new RoleRepository();
-    private static Users user = new Users("Magery", "Tyrell", "margery.tyrell@kingslanding.com");
-    private static Role role = new Role("Lady Regina", description);
+    private static Role role = new Role("King", description);
 
     @BeforeAll
     static void createUser() {
         role.save();
-        user.save();
     }
 
     @AfterAll
     static void deleteUser() {
-        user.delete();
         role.delete();
     }
 
@@ -39,15 +35,15 @@ public class RoleTest {
 
     @Test
     void modifyRole() {
-        role.setDescription("Wife of King Joffrey Baratheon");
+        role.setDescription("Occupant of the throne of swords");
         Result result = role.save();
 
-        assertTrue(result.isSuccess(), "Error during saving operation + " + result.getMessages().toString());
+        assertTrue(result.isSuccess(), "Error during saving operation " + result.getMessages().toString());
     }
 
     @Test
     void verifyConstraint() {
-        Role newRole = new Role(role.getName(), "Wife of King Tommen Baratheon");
+        Role newRole = new Role(role.getName(), "Traitor");
         Result result = newRole.save();
 
         assertFalse(result.isSuccess(), "Violated constraints");

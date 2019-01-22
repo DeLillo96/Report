@@ -26,7 +26,7 @@ public class Customer extends AbstractEntity {
     @PrimaryKeyJoinColumn
     private Integer id;
 
-    @Column(nullable = false, length = 128)
+    @Column(unique = true, nullable = false, length = 128)
     private String code;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)

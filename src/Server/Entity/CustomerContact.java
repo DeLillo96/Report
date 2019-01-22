@@ -22,6 +22,10 @@ public class CustomerContact extends Person {
     public CustomerContact() {
     }
 
+    public CustomerContact(String name, String surname, String fiscalCode, String telephone) {
+        super(name, surname, fiscalCode, telephone);
+    }
+
     public Customer getCustomer() {
         return customer;
     }

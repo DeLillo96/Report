@@ -36,7 +36,7 @@ public abstract class Person extends AbstractEntity {
     @Column(unique = true, length = 16)
     private String fiscalCode;
 
-    @Column(unique = true, length = 10)
+    @Column(length = 10)
     private String telephone;
 
     public Person() {

@@ -29,6 +29,10 @@ public class Employee extends Person {
     public Employee() {
     }
 
+    public Employee(String name, String surname, String fiscalCode, String telephone) {
+        super(name, surname, fiscalCode, telephone);
+    }
+
     public Users getUser() {
         return user;
     }
